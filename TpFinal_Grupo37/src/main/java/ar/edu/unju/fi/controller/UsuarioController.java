@@ -11,7 +11,7 @@ public class UsuarioController {
 
     @GetMapping("/registro")
     public String getNuevoRegistroPage(Model model) {
-        return "registro";
+        return "nuevo_registro";
     }
 
 

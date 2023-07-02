@@ -17,7 +17,7 @@ public class Usuario {
     @NotBlank(message = "El gmail no puede estar vacío")
     private String email;
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    @NotNull(message="La fecha no puede ser null")
+    @NotNull(message="Debe seleccionar una fecha")
     @Past(message="La fecha debe ser menor a la fecha actual")
     private String fecha_nacimiento;
     @NotBlank(message = "El telefono no puede estar vacío")
