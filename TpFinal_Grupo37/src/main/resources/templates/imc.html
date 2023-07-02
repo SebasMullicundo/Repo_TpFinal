@@ -5,44 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NutriLife</title>
     <!-- Inclusión del archivo CSS de Bootstrap -->
-  	<!-- <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<link rel="stylesheet" th:href="@{/estilos/estilos.css}">-->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  	<link href="../static/estilos/estilos.css" rel="stylesheet">
+  	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/estilos/estilos.css}">
   </head>
   <body>
-  	<!-- Barra de navegacion -->
-    <nav class="navbar navbar-expand-lg">
-	  <div class="container">
-	    <div class="logo">Nutri<span class="logo logo_sub">Life</span></div>
-	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-	      <span class="navbar-toggler-icon"></span>
-	    </button>
-	    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-	      <ul class="navbar-nav ms-auto">
-	        <li class="nav-item">
-	          <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" href="#">Registrarme</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" href="#">Testimonios</a>
-	        </li>
-	        <li class="nav-item dropdown">
-	          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-	            Servicios
-	          </a>
-	          <ul class="dropdown-menu">
-	            <li><a class="dropdown-item" href="#">Cálculo IMC</a></li>
-	            <li><a class="dropdown-item" href="#">Peso ideal</a></li>
-	            <li><a class="dropdown-item" href="#">Recetas</a></li>
-	          </ul>
-	        </li>
-	      </ul>
-	    </div>
-	  </div>
-	</nav>
+  
+  	<!-- Navegación -->
+	<nav th:replace="~{layouts/nav :: nav}"></nav>
     
  	<!-- Calculo IMC -->
 	<div class="container peso_container d-flex align-items-center justify-content-center">
@@ -95,54 +64,9 @@
 	</div>
 
 
- 	 <!-- footer -->
-	<footer class="footer text-center text-lg-start text-white">
-	  <div class="d-flex flex-column flex-md-row justify-content-between container-fluid p-3">
-	    <div class="col-md-6 d-flex align-items-center justify-content-center">
-	  		<a class="navbar-brand logo" href="#">Nutri<span class="logo logo_sub">Life</span></a>
-		</div>
-	
-	    <div class="col-md-6 mt-4 mt-md-0">
-	      <div class="row">
-	        <div class="col-md-6 mb-4 mb-md-0 text-center">
-	        	<!-- redes sociale -->
-	          <h5 class="text-uppercase">Contacto</h5>
-	            <ul class="list-unstyled">
-	              <li class="mb-2">
-	              	<a href="#!" class="text-decoration-none text-white"><img class="footer__icon" alt="img_facebook" th:src="@{/img/facebook.svg}">Facebook</a>
-	              </li>
-	              <li class="mb-2">
-	                <a href="#!" class="text-decoration-none text-white"><img class="footer__icon" alt="img_correo" th:src="@{/img/gmail.svg}">Correo</a>
-	              </li>
-	              <li class="mb-2">
-	                <a href="#!" class="text-decoration-none text-white"><img class="footer__icon" alt="img_instagram" th:src="@{/img/instagram.svg}">Instagramk</a>
-	              </li>
-	            </ul>
-	        </div>
-	        <!-- Servicios -->
-	        <div class="col-md-6 mb-4 mb-md-0 text-center">
-	          <h5 class="text-uppercase">Servicios</h5>
-	            <ul class="list-unstyled">
-	              <li class="mb-2">
-	              	<a href="#!" class="text-decoration-none text-white">Masa corporal</a>
-	              </li>
-	              <li class="mb-2">
-	                <a href="#!" class="text-decoration-none text-white">Recetas</a>
-	              </li>
-	              <li class="mb-2">
-	                <a href="#!" class="text-decoration-none text-white">Peso ideal</a>
-	              </li>
-	            </ul>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
-	
-	  <div class="text-center">© 2023 Copyright: Grupo 37</div>
-	</footer>
+ 	<!-- footer -->
+	<footer th:replace="~{layouts/footer :: footer}"></footer>
   <!-- Inclusión del archivo JavaScript de Bootstrap -->
-  <!-- <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
   </body>
 </html>
