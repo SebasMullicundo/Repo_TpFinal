@@ -1,0 +1,47 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NutriLife</title>
+    <!-- Inclusión del archivo CSS de Bootstrap -->
+  	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/estilos/estilos.css}">
+  </head>
+  <body>
+  	<!-- Navegación -->
+	<nav th:replace="~{layouts/nav :: nav}"></nav>
+    
+ 	<div class="container">
+    <h1 class="text-center my-5">Testimonios</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="testimonial p-4 text-center">
+                <img class="testimonial-image" th:src="@{/img/juan.png}" alt="Juan Pérez" style="width: 100px;">
+                <p class="testimonial-text">"Desde que empecé a comer más saludable, me siento con más energía y he perdido peso."</p>
+                <p class="testimonial-author">- Juan Pérez</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="testimonial p-4 text-center">
+                <img class="testimonial-image" th:src="@{/img/maria.png}" alt="María García" style="width: 100px;">
+                <p class="testimonial-text">"Comer saludable ha mejorado mi salud en general y me ha ayudado a controlar mi diabetes."</p>
+                <p class="testimonial-author">- María García</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="testimonial p-4 text-center">
+                <img class="testimonial-image" th:src="@{/img/carlos.png}" alt="Carlos Rodríguez" style="width: 180px;">
+                <p class="testimonial-text">"Nunca pensé que la comida saludable pudiera ser tan deliciosa. ¡Estoy disfrutando de cada bocado!"</p>
+                <p class="testimonial-author">- Carlos Rodríguez</p>
+            </div>
+        </div>
+    </div>
+</div>
+ 	
+ 	<!-- footer -->
+	<footer th:replace="~{layouts/footer :: footer}"></footer>
+  <!-- Inclusión del archivo JavaScript de Bootstrap -->
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>

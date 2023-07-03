@@ -1,0 +1,85 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NutriLife</title>
+    <!-- Inclusión del archivo CSS de Bootstrap -->
+  	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/estilos/estilos.css}">
+  </head>
+  <body>
+  	<!-- Navegación -->
+	<nav th:replace="~{layouts/nav :: nav}"></nav>
+    
+    <section class="hero">
+    	<div class="container">
+    		<div class="row d-flex align-items-center justify-content-center">
+    			<div class="col-md-6">
+    				<div class="text">
+    					<h1 class="container__titulo">Salud y Bienestar</h1>
+    					<p class="container__subtitulo">Guía hacia una vida saludable</p>
+    					<p class="container__parrafo">Una alimentación equilibrada y variada proporciona los nutrientes necesarios, como vitaminas, minerales, proteínas, carbohidratos y grasas saludables, que el cuerpo necesita para funcionar correctamente.</p>
+    				</div>
+    			</div>
+    			
+    			<div class="col-md-6 d-flex align-items-center justify-content-center">
+    				<img alt="img_plato" th:src="@{/img/hero-img.png}" class="w-70 hero__image">
+    			</div>
+    		</div>
+    	</div>
+    </section>
+    
+    <!-- Contenido principal -->
+    <section class="main">
+    	<div class="container">
+    		<div class="text-header text-center">
+    			<h3 class="container__titulo">Nosotros</h3>
+    			<p class="main__parrafo">Nos dedicamos a promover una buena alimentación, brindando recursos prácticos para ayudarte a mejorar tu bienestar y alcanzar tus metas de salud. Creemos que una buena alimentación es fundamental para mantener un cuerpo sano y en equilibrio. Nuestro equipo en nutrición está comprometido en proporcionarte consejos y guías nutricionales para comprendas la importancia de una alimentación balanceada y cómo puedes hacer elecciones saludables en tu vida diaria.</P>
+
+				<P class="main__parrafo">Aquí podras encontrar varios recursos, calculos de IMC para evaluar tu peso, recetas saludables y planes de comidas. Nuestro objetivo es ayudarte a comprender los conceptos clave de la nutrición, cómo seleccionar los alimentos adecuados y cómo incorporarlos en tus comidas diarias de manera fácil y deliciosa.</p>
+    		</div>
+    		<!-- Servicios -->
+    		<div class="items text-center">
+    			<div class="row">
+    				<div class="col-md-4">
+	    				<div class="icons">
+	    					<img alt="icon_imc" th:src="@{/img/icon1.svg}" class="servicio__icon">
+	    				</div>
+	    				<div class="desc">
+	    					<h5 class="servicio__titulo">IMC</h5>
+	    					<p class="servicio_parrafo">Cálculo del Índice de Masa Corporal (IMC) para evaluar y describir la relación entre el peso y la altura de una persona. Este servicio permite obtener una medida que indicara si su peso está dentro de un rango considerado saludable.</p>
+	    				</div>
+	    			</div>
+    			
+	    			<div class="col-md-4">
+	    				<div class="icons">
+	    					<img alt="icon_receta" th:src="@{/img/icon2.svg}" class="servicio__icon">
+	    				</div>
+	    				<div class="desc">
+	    					<h5 class="servicio__titulo">Recetas</h5>
+	    					<p class="servicio_parrafo">Se roporciona una variedad de recetas que se caracterizan por ser nutritivas, sabrosas y diseñadas específicamente para las necesidades de una alimentación saludable. Tendras acceso a una variedad de recetas que incluyen opciones para almuerzos, cenas, meriendas y postres saludables.</p>
+	    				</div>
+	    			</div>
+    			
+	    			<div class="col-md-4">
+	    				<div class="icons">
+	    					<img alt="icon_peso" th:src="@{/img/icon3.svg}" class="servicio__icon">
+	    				</div>
+	    				<div class="desc">
+	    					<h5 class="servicio__titulo">Peso ideal</h5>
+	    					<p class="servicio_parrafo">Puedes obtener una estimación del peso corporal que se considera saludable para su altura y otros factores relevantes. Esto puede ser útil para evaluar su progreso en un programa de control de peso o estilo de vida saludable. </p>
+	    				</div>
+	    			</div>
+    			</div>
+    			
+    		</div>
+    	</div>
+    </section>
+   
+ 	<!-- footer -->
+	<footer th:replace="~{layouts/footer :: footer}"></footer>
+  <!-- Inclusión del archivo JavaScript de Bootstrap -->
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>

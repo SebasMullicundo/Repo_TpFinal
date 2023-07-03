@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NutriLife-Ingredientes</title>
+<!-- Inclusión del archivo CSS de Bootstrap -->
+<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/estilos/estilos.css}">
+
+</head>
+<body>
+	<!-- Navegación -->
+	<nav th:replace="~{layouts/nav :: nav}"></nav>
+
+	<!-- Contenido principal -->
+	<!-- Contenido del formulario -->
+	<div class="container mt-2">
+		<div class="p-3 mb-2 bg-body-secondary">
+			<h3 class="text-center fw-semibold container__subtitulo">Registro de INGREDIENTES</h3>
+			<form class="row g-3">
+				<div class="col-12 mb-3">
+					<label for="ingredienteReceta" class="form-label container__parrafo">Ingrediente</label> 
+					<input type="text" class="form-control" id="ingredienteReceta" placeholder="Ingrese el ingrediente">
+				</div>
+				<!-- Campo oculto para almacenar el ID del ingrediente -->
+				<input type="hidden" name="idIngrediente">
+				<div class="d-grid gap-2">
+					<button type="submit" class="btn btn-primary btn-lg">Subir ingrediente</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<!-- footer -->
+	<footer th:replace="~{layouts/footer :: footer}"></footer>
+	<!-- Inclusión del archivo JavaScript de Bootstrap -->
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

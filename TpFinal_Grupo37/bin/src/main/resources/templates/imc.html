@@ -1,0 +1,72 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NutriLife</title>
+    <!-- Inclusión del archivo CSS de Bootstrap -->
+  	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/estilos/estilos.css}">
+  </head>
+  <body>
+  
+  	<!-- Navegación -->
+	<nav th:replace="~{layouts/nav :: nav}"></nav>
+    
+ 	<!-- Calculo IMC -->
+	<div class="container peso_container d-flex align-items-center justify-content-center">
+	  <div class="row">
+	    <div class="col-md-12">
+	      <h2 class="peso_titulo">Calcular el índice de masa corporal</h2>
+	      <form>
+	        <div class="form-group mt-4">
+	          <label for="inputNombre">Peso:</label>
+	          <input type="number" class="form-control" id="inputNombre" placeholder="Ingrese su peso">
+	        </div>
+	        <button type="submit" class="btn boton-imc mb-4 mt-3">Enviar</button>
+	      </form>
+	    </div>
+	    <div class="col-md-12">
+	      <div class="table-responsive">
+	        <table class="table">
+	          <thead>
+	            <tr>
+	              <th>Fecha</th>
+	              <th>Nombre</th>
+	              <th>Apellido</th>
+	              <th>Peso</th>
+	            </tr>
+	          </thead>
+	          <tbody>
+	            <tr>
+	              <td>Dato 1</td>
+	              <td>Dato 2</td>
+	              <td>Dato 3</td>
+	              <td>Dato 4</td>
+	            </tr>
+	            <tr>
+	              <td>Dato 5</td>
+	              <td>Dato 6</td>
+	              <td>Dato 7</td>
+	              <td>Dato 8</td>
+	            </tr>
+	            <tr>
+	              <td>Dato 9</td>
+	              <td>Dato 10</td>
+	              <td>Dato 11</td>
+	              <td>Dato 12</td>
+	            </tr>
+	          </tbody>
+	        </table>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+ 	<!-- footer -->
+	<footer th:replace="~{layouts/footer :: footer}"></footer>
+  <!-- Inclusión del archivo JavaScript de Bootstrap -->
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>

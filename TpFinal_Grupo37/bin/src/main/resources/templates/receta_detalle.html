@@ -1,0 +1,50 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NutriLife</title>
+    <!-- Inclusión del archivo CSS de Bootstrap -->
+  	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/estilos/estilos.css}">
+  </head>
+  <body>
+  	<!-- Navegación -->
+	<nav th:replace="~{layouts/nav :: nav}"></nav>
+    
+ 	<!-- Detalle de la receta -->
+	<div class="container d-flex align-items-center justify-content-center mt-5 mb-5 p-4">
+	  <div class="row">
+	    <div class="col-md-6 d-flex align-items-center justify-content-center">
+	      <img src="../static/img/receta1.jpg" alt="receta" class="receta_detalle_img">
+	    </div>
+	    <div class="col-md-6">
+	      <h2 class="receta_titulo">Sopa</h2>
+	      <ul>
+	      	<li>Aceite de oliva</li>
+	      	<li>Zanahoria</li>
+	      	<li>Calabacín</li>
+	      	<li>Pimenton rojo</li>
+	      	<li>Caldo de verdura</li>
+	      	<li>Sal</li>
+	      	<li>Pimienta</li>
+	      	<li>Orégano</li>
+	      	<li>Tomate</li>
+	      	<li>Queso parmesano</li>
+	      </ul>
+	      	<h2 class="receta_subtitulo">Preparación</h2>
+	    	<p>En una olla grande, calienta el aceite de oliva a fuego medio.</p>
+	    	<p>Añade las zanahorias, el apio, el pimiento rojo y el calabacín a la olla. Cocina por unos minutos, hasta que las verduras se ablanden ligeramente.</p>
+	    	<p>Vierte el caldo de verduras y los tomates en cubitos en la olla. Agrega el orégano, la sal y la pimienta. Mezcla bien.</p>
+	    	<p>Lleva la sopa a ebullición y luego reduce el fuego a medio-bajo. Cocina a fuego lento durante unos 15-20 minutos, o hasta que las verduras estén tiernas y los sabores se hayan mezclado.</p>
+	    	<p>Sirve la sopa caliente. Opcionalmente, espolvorea queso parmesano rallado por encima para darle un toque extra de sabor.</p>
+	    </div>
+	  </div>
+	</div>
+   
+ 	<!-- footer -->
+	<footer th:replace="~{layouts/footer :: footer}"></footer>
+  <!-- Inclusión del archivo JavaScript de Bootstrap -->
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>
