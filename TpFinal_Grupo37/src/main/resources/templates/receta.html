@@ -1,0 +1,66 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NutriLife</title>
+    <!-- Inclusión del archivo CSS de Bootstrap -->
+  	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/estilos/estilos.css}">
+	<style>
+        .caption h3 {
+            height: 3rem;
+            overflow: hidden;
+        }
+        .caption p {
+            height: 3rem;
+            overflow: hidden;
+        }
+    </style>
+  </head>
+  <body>
+  	<!-- Navegación -->
+	<nav th:replace="~{layouts/nav :: nav}"></nav>
+	
+    <div class="container">
+        <h1>Recetas</h1>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="thumbnail">
+                    <img th:src="@{/img/receta1.webp}" alt="Receta 1" style="width: 300px;">
+                    <div class="caption">
+                        <h4>Receta de Pizza casera</h4>
+                        <p>Descripción de la Receta 1</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Ver Receta Completa</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="thumbnail">
+                    <img th:src="@{/img/receta2.webp}" alt="Receta 2" style="width: 350px;">
+                    <div class="caption">
+                        <h4>Receta de Tarta bombón</h4>
+                        <p>Descripción de la Receta 2</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Ver Receta Completa</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="thumbnail">
+                    <img th:src="@{/img/receta3.webp}" alt="Receta 3" style="width: 350px;">
+                    <div class="caption">
+                        <h4>Receta de Bizcochuelo de nuez</h4>
+                        <p>Descripción de la Receta 3</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Ver Receta Completa</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+ 	<!-- footer -->
+	<footer th:replace="~{layouts/footer :: footer}"></footer>
+  <!-- Inclusión del archivo JavaScript de Bootstrap -->
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>
