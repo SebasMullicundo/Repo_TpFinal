@@ -5,36 +5,38 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
+
 public class IMC {
-    private long id;
+    private Long id;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @NotNull(message="Debe seleccionar la fecha")
     @Past(message="La fecha debe ser menor a la fecha actual")
-    private String fechaIMC;
+    private LocalDate fechaIMC;
     @NotBlank(message= "Debe seleccionar un usuario")
     private Usuario usuario;
     private boolean estado;
 
-    public IMC(long id, @NotNull(message = "Debe seleccionar una fecha") String fechaIMC, Usuario usuario, boolean estado) {
+    public IMC(Long id, @NotNull(message = "Debe seleccionar una fecha") LocalDate fechaIMC, Usuario usuario, boolean estado) {
         this.id = id;
         this.fechaIMC = fechaIMC;
         this.usuario = usuario;
         this.estado = estado;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getFechaIMC() {
+    public LocalDate getFechaIMC() {
         return fechaIMC;
     }
 
-    public void setFechaIMC(String fechaIMC) {
+    public void setFechaIMC(LocalDate fechaIMC) {
         this.fechaIMC = fechaIMC;
     }
 

@@ -1,23 +1,24 @@
 package ar.edu.unju.fi.entity;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Testimonio {
-    private long id;
+    private Long id;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @NotNull(message="Debe seleccionar la fecha")
     @Past(message="La fecha debe ser menor a la fecha actual")
     private String fecha;
     @NotBlank(message= "Debe seleccionar un usuario")
+
     private Usuario usuario;
     @NotBlank(message= "Debe ingresar un comentario")
+    @Pattern(regexp = "^[A-Z].*", message = "El comentario debe comenzar con una letra mayúscula")
+    @Size(min=50, message="El comentario no puede tener menos de 50 caracteres")
     private String comentario;
     private boolean estado;
 
-    public Testimonio(long id, @NotNull(message = "Debe seleccionar la fecha") String fecha, Usuario usuario, String comentario, boolean estado) {
+    public Testimonio(Long id, @NotNull(message = "Debe seleccionar la fecha") String fecha, Usuario usuario, String comentario, boolean estado) {
         this.id = id;
         this.fecha = fecha;
         this.usuario = usuario;
@@ -25,11 +26,11 @@ public class Testimonio {
         this.estado = estado;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
