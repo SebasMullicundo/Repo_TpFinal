@@ -64,6 +64,7 @@ public class IMC {
 
     public boolean isEstado() {
         return estado;
+        
     }
 
     public void setEstado(boolean estado) {
