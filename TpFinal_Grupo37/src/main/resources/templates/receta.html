@@ -22,40 +22,38 @@
   	<!-- Navegación -->
 	<nav th:replace="~{layouts/nav :: nav}"></nav>
 	
-    <div class="container">
-        <h1>Recetas</h1>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="thumbnail">
-                    <img th:src="@{/img/receta1.webp}" alt="Receta 1" style="width: 300px;">
-                    <div class="caption">
-                        <h4>Receta de Pizza casera</h4>
-                        <p>Descripción de la Receta 1</p>
-                        <p><a href="#" class="btn btn-primary" role="button">Ver Receta Completa</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="thumbnail">
-                    <img th:src="@{/img/receta2.webp}" alt="Receta 2" style="width: 350px;">
-                    <div class="caption">
-                        <h4>Receta de Tarta bombón</h4>
-                        <p>Descripción de la Receta 2</p>
-                        <p><a href="#" class="btn btn-primary" role="button">Ver Receta Completa</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="thumbnail">
-                    <img th:src="@{/img/receta3.webp}" alt="Receta 3" style="width: 350px;">
-                    <div class="caption">
-                        <h4>Receta de Bizcochuelo de nuez</h4>
-                        <p>Descripción de la Receta 3</p>
-                        <p><a href="#" class="btn btn-primary" role="button">Ver Receta Completa</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="container peso_container d-flex align-items-center justify-content-center mt-2">
+	<h1 class="peso_titulo">Recetas</h1>
+	<!-- Filtro por dia -->
+	<div class="dropdown mb-1 ">
+		<a class="btn dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Categoria</a>
+		<ul class="dropdown-menu ">
+			<li><a class="dropdown-item small" th:href="@{/recetas/vista}" >Todos</a></li>
+			<li><a class="dropdown-item small" th:href="@{/recetas/filtro/{categoria}(categoria=${'Carnes'})}">Carnes</a></li>
+			<li><a class="dropdown-item small" th:href="@{/recetas/filtro/{categoria}(categoria=${'Bebidas'})}">Bebidas</a></li>
+			<li><a class="dropdown-item small" th:href="@{/recetas/filtro/{categoria}(categoria=${'Dulces'})}">Dulces</a></li>
+			<li><a class="dropdown-item small" th:href="@{/recetas/filtro/{categoria}(categoria=${'Ensaladas'})}">Ensaladas</a></li>
+			<li><a class="dropdown-item small" th:href="@{/recetas/filtro/{categoria}(categoria=${'Legumbres'})}">Legumbres</a></li>
+			<li><a class="dropdown-item small" th:href="@{/recetas/filtro/{categoria}(categoria=${'Pescados'})}">Pescados</a></li>
+			<li><a class="dropdown-item small" th:href="@{/recetas/filtro/{categoria}(categoria=${'Pan'})}">Pan</a></li>
+			<li><a class="dropdown-item small" th:href="@{/recetas/filtro/{categoria}(categoria=${'Sopas'})}">Sopas</a></li>			
+		</ul>
+	</div>
+        <section class="container mt-5 mb-5">
+		  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+		    <div th:each="receta:${recetas}" class="col-10">
+		      <div class="card h-100">
+		        <div class="d-flex justify-content-center align-items-center">
+			        <img th:src="@{'/img/'+${receta.nombreImg}+'.jpg'}"  alt="Receta" class="rounded-circle mt-4" style="width: 250px; height: 250px;">
+			    </div>
+		        <div class="card-body text-center">
+		          <h4 class="text-center" th:text="${receta.nombre}"></h4>
+				  <p class="text-center"><a th:href="@{/recetas/detalle/}+${receta.id}" class="btn boton-imc" role="button">Ver Receta Completa</a></p>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</section>
     </div>
    
  	<!-- footer -->
