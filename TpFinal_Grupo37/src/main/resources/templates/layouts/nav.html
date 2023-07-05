@@ -32,8 +32,17 @@
 		          <ul class="dropdown-menu">
 		            <li><a class="dropdown-item" href="#">Cálculo IMC</a></li>
 		            <li><a class="dropdown-item" href="#">Peso ideal</a></li>
-		            <li><a class="dropdown-item" href="#">Recetas</a></li>
+		            <li><a class="dropdown-item" th:href="@{/recetas/vista}">Recetas</a></li>
 		          </ul>
+		        </li>
+		        <li>
+		        	<div class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Gestión de datos</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" th:href="@{/ingredientes/listado}">Ingredientes</a></li>
+							<li><a class="dropdown-item" th:href="@{/recetas/listado}">Recetas</a></li>
+						</ul>
+					</div>
 		        </li>
 		      </ul>
 		    </div>

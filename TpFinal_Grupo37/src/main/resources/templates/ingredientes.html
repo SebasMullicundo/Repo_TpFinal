@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Servicios</title>
+		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/estilos/estilos.css}">
+	</head>
+	<body>
+		
+		<!-- Navegación -->
+		<nav th:replace="~{layouts/nav :: nav}"></nav>
+
+        
+        <!-- Contenedor de provincias -->
+		<div class="container peso_container d-flex align-items-center justify-content-center">
+            <section class="table-responsive">
+                <h1 class="peso_titulo">Ingredientes</h1>
+                <table class="table table-striped text-center tabla__container">
+                    <thead class="tabla_head">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tabla__body">
+                    	<!-- Iteración sobre la lista de provincias -->
+                        <tr th:each="ingrediente: ${ingredientes}">
+                            <td class="tabla__dato" th:text="${ingrediente.nombre}"></td>
+                            <td class="tabla__dato">
+                            	<!-- Enlaces para editar y eliminar una provincia -->
+                            	<a id="tabla__enlace" th:href="@{/ingredientes/modificar/} + ${ingrediente.id}">Editar</a>
+                            	<a id="tabla__enlace" th:href="@{/ingredientes/eliminar/} + ${ingrediente.id}">Borrar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            <a class="servicio__enlace btn boton-imc" th:href="@{/ingredientes/nuevo_ingrediente}">Nuevo ingrediente</a>
+            </section>
+        </div>
+        <!-- <a class="nav-link servicio__enlace" th:href="@{/sucursal/listado}">Volver a Sucursales</a> -->
+        <!-- footer -->
+        <footer th:replace="~{layouts/footer :: footer}"></footer>
+        <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	</body>
+</html>

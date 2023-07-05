@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,19 +15,20 @@
 
 	<!-- Contenido principal -->
 	<!-- Contenido del formulario -->
-	<div class="container mt-2">
+	<div class="container  peso_container d-flex align-items-center justify-content-center mt-2">
 		<div class="p-3 mb-2 bg-body-secondary">
-			<h3 class="text-center fw-semibold container__subtitulo">Registro de INGREDIENTES</h3>
-			<form class="row g-3">
+			<h3 class="text-center fw-semibold container__subtitulo" th:text="${edicion}? 'Modificar ingrediente' : 'Nuevo ingrediente'"></h3>
+			<form class="row g-3" th:action="${edicion}? @{/ingredientes/modificar_ingrediente} : @{/ingredientes/guardar_ingrediente}" th:object="${ingrediente}" method="post">
 				<div class="col-12 mb-3">
 					<label for="ingredienteReceta" class="form-label container__parrafo">Ingrediente</label> 
-					<input type="text" class="form-control" id="ingredienteReceta" placeholder="Ingrese el ingrediente">
+					<input type="text" class="form-control" id="ingredienteReceta" placeholder="Ingrese el nombre"  name="nombre" th:field="*{nombre}">
+					<div class="p-1 mt-1 mb-2 bg-danger text-white rounded-1" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 				</div>
+				
 				<!-- Campo oculto para almacenar el ID del ingrediente -->
-				<input type="hidden" name="idIngrediente">
-				<div class="d-grid gap-2">
-					<button type="submit" class="btn btn-primary btn-lg">Subir ingrediente</button>
-				</div>
+				<input type="hidden" name="id"  th:value="*{id}">
+				<!-- Envío del formulario, muestrará de manera dinamica el título según la variable "edición"  -->
+				<input type="submit" class="btn boton-imc" th:value="${edicion}? 'Modificar' : 'Guardar'">
 			</form>
 		</div>
 	</div>

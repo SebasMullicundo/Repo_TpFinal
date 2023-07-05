@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Servicios</title>
+		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/estilos/estilos.css}">
+	</head>
+	<body>
+		
+		<!-- Navegación -->
+		<nav th:replace="~{layouts/nav :: nav}"></nav>
+
+        
+        <!-- Contenedor de recetas -->
+		<div class="containers d-flex align-items-center justify-content-center mb-5 mt-5">
+		    <div class="table-responsive">
+		        <h1 class="peso_titulo">Receta</h1>
+		        <table class="table table-striped text-center tabla__container">
+		            <thead class="tabla_head">
+		                <tr>
+		                    <th>Nombre</th>
+		                    <th>Categoría</th>
+		                    <th>Ingredientes</th>
+		                    <th>Preparación</th>
+		                    <th>Acciones</th>
+		                </tr>
+		            </thead>
+		            <tbody class="tabla__body">
+		                <!-- Iteración sobre la lista de recetas -->
+		                <tr th:each="receta: ${recetas}">
+		                    <td class="tabla__dato" th:text="${receta.nombre}"></td>
+		                    <td class="tabla__dato" th:text="${receta.categoria}"></td>
+		                    <td class="tabla__dato">
+		                        <!-- Iteración sobre la lista de ingredientes de la receta -->
+		                        <ul>
+		                            <li th:each="ingrediente: ${receta.ingredientes}" th:text="${ingrediente.nombre}"></li>
+		                        </ul>
+		                    </td>
+		                    <td class="tabla__dato" style="text-align: left;">
+					          <!-- Iteración sobre la lista de ingredientes de la receta -->
+					          <ul>
+					            <li th:each="preparacion: ${receta.listaPreparaciones}" th:text="${preparacion}"></li>
+					          </ul>
+					        </td>
+			                <td class="tabla__dato">
+		                        <!-- Enlaces para editar y eliminar una receta -->
+		                        <a id="tabla__enlace" th:href="@{/recetas/modificar/} + ${receta.id}">Editar</a>
+		                        <a id="tabla__enlace" th:href="@{/recetas/eliminar/} + ${receta.id}">Borrar</a>
+		                    </td>
+		                </tr>
+		            </tbody>
+		        </table>
+		        <a class="servicio__enlace btn boton-imc" th:href="@{/recetas/nueva_receta}">Nueva Receta</a>
+		    </div>
+		</div>
+
+        <!-- footer -->
+        <footer th:replace="~{layouts/footer :: footer}"></footer>
+        <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	</body>
+</html>

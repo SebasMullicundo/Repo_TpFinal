@@ -1,19 +1,41 @@
 package ar.edu.unju.fi.entity;
 
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+@Component
+@Entity
+@Table(name = "ingredientes")
 public class Ingrediente {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ingr_id")
 	private Long id;
 	
 	@NotEmpty(message="No puede tener el nombre vacio")
 	@Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$", message = "Solo se permiten caracteres")
 	@Pattern(regexp = "^[A-Z].*", message = "El nombre debe comenzar con una letra mayúscula")
 	@Size(min = 4, message = "El nombre debe tener al menos cuatro caracteres")
+	@Column(name = "ingr_nombre")
 	private String nombre;
 	
+	@ManyToMany(mappedBy = "ingredientes")
+	private List<Receta> recetas;
+	
+	@Column(name = "estado")
 	private boolean estado;
 	
 	public Ingrediente() {
@@ -48,6 +70,14 @@ public class Ingrediente {
 
 	public void setEstado(boolean estado) {
 		this.estado = estado;
+	}
+
+	public List<Receta> getRecetas() {
+		return recetas;
+	}
+
+	public void setRecetas(List<Receta> recetas) {
+		this.recetas = recetas;
 	}
 	
 	
