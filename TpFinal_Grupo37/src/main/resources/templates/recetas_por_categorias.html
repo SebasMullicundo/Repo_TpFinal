@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Recetas por categoría</title>
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/estilos/estilos.css}">
+</head>
+<body>
+    <!-- Navegación -->
+    <nav th:replace="~{layouts/nav :: nav}"></nav>
+
+    <!-- Contenedor de recetas -->
+    <div class="container d-flex align-items-center justify-content-center mb-5 mt-5">
+        <div class="table-responsive">
+            <!-- Título con el nombre de la categoría -->
+            <h1 class="peso_titulo">Recetas - Categoría: [[${categoria}]]</h1>
+            <table class="table table-striped text-center tabla__container">
+                <thead class="tabla_head">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Ingredientes</th>
+                        <th>Preparación</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="tabla__body">
+                    <!-- Iteración sobre la lista de recetas -->
+                    <tr th:each="receta: ${recetas}">
+                        <td class="tabla__dato" th:text="${receta.nombre}"></td>
+                        <td class="tabla__dato" th:text="${receta.categoria}"></td>
+                        <td class="tabla__dato">
+                            <!-- Iteración sobre la lista de ingredientes de la receta -->
+                            <ul>
+                                <li th:each="ingrediente: ${receta.ingredientes}" th:text="${ingrediente.nombre}"></li>
+                            </ul>
+                        </td>
+                        <td class="tabla__dato" style="text-align: left;">
+                            <!-- Iteración sobre la lista de preparaciones de la receta -->
+                            <ul>
+                                <li th:each="preparacion: ${receta.listaPreparaciones}" th:text="${preparacion}"></li>
+                            </ul>
+                        </td>
+                        <td class="tabla__dato">
+                            <!-- Enlace a los detalles de la receta -->
+                            <a id="tabla__enlace" th:href="@{/recetas/detalle/} + ${receta.id}">Ver detalles</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer th:replace="~{layouts/footer :: footer}"></footer>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

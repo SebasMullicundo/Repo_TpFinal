@@ -20,7 +20,7 @@ public class IMCServiceImp implements IImcService {
     private IMC imc;
     @Override
     public List<IMC> getListaImc() {
-    	return imcRepository.findbyEstado(true);
+    	return imcRepository.findByEstado(true);
     }
 
     @Override

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Categorías de recetas</title>
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/estilos/estilos.css}">
+</head>
+<body>
+    <!-- Navegación -->
+    <nav th:replace="~{layouts/nav :: nav}"></nav>
+
+    <!-- Contenedor de categorías -->
+    <div class="container d-flex align-items-center justify-content-center mb-5 mt-5">
+        <div class="table-responsive">
+            <h1 class="peso_titulo">Categorías de recetas</h1>
+            <table class="table table-striped text-center tabla__container">
+                <thead class="tabla_head">
+                    <tr>
+                        <th>Categoría</th>
+                    </tr>
+                </thead>
+                <tbody class="tabla__body">
+                    <!-- Iteración sobre la lista de categorías -->
+                    <tr th:each="categoria: ${categorias}">
+                        <td class="tabla__dato">
+                            <!-- Enlace a la vista de recetas por categoría -->
+                            <a th:href="@{/recetas/categoria/} + ${categoria}" th:text="${categoria}"></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer th:replace="~{layouts/footer :: footer}"></footer>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

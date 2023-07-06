@@ -2,6 +2,8 @@ package ar.edu.unju.fi.controller;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -117,4 +119,13 @@ public class RecetaController {
 
 		return "receta";
 	}
+	@GetMapping("/categoria/{categoria}")
+	public String getRecetasPorCategoria(Model model, @PathVariable String categoria) {
+	    // Obtener la lista de recetas por categoría
+	    List<Receta> recetas = recetaService.filtroRecetaCategoria(categoria);
+	    model.addAttribute("recetas", recetas);
+	    model.addAttribute("categoria", categoria);
+	    return "recetas_por_categoria";
+	}
+
 }

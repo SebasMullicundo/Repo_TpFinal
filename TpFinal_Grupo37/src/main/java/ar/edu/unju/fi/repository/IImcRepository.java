@@ -9,6 +9,6 @@ import ar.edu.unju.fi.entity.IMC;
 import ar.edu.unju.fi.entity.Usuario;
 @Repository
 public interface IImcRepository extends CrudRepository<IMC,Long> {
-   public List<IMC> findbyEstado(boolean estado);
+   public List<IMC> findByEstado(boolean estado);
    public List<IMC> findByUsuario(Usuario usuario,boolean estado,Sort fechaDesc);
 }
