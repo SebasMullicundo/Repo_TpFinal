@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -27,9 +29,12 @@ public class IMC {
     @Past(message="La fecha debe ser menor a la fecha actual")
     @Column(name ="Imc_fecha")
     private LocalDate fechaIMC;
+    
     @NotBlank(message= "Debe seleccionar un usuario")
-    @Column(name="Imc_usuario")
+    @OneToOne(mappedBy = "imc")
+    @PrimaryKeyJoinColumn
     private Usuario usuario;
+
     @Column(name="Imc_estado")
     private boolean estado;
 
