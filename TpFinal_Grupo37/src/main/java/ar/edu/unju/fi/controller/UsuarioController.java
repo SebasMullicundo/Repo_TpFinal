@@ -20,6 +20,33 @@ public class UsuarioController {
 	@Autowired
 	private Usuario usuario;
 	
+	@GetMapping("/acceso_administrador")
+	public String contraseñaAdministrador(Model model) {
+		model.addAttribute("usuarios", true);
+		return "control";
+	}
+	
+	@PostMapping("/administrador_control")
+	public String administradorControl(Model model, @RequestParam("codigo") String codigo) {
+		
+		if(usuarioService.verificarUsuario(codigo)) {
+			usuario = usuarioService.obtenerUsuario(codigo);
+			if(usuario.getRol()) {
+				return "redirect:/usuarios/listado";
+			}
+			else {
+				model.addAttribute("usuarios", true);
+				model.addAttribute("mensaje2", true);
+				return "control";
+			}
+		} else {
+			model.addAttribute("usuarios", true);
+			model.addAttribute("mensaje1", true);
+			return "control";
+		}
+	}
+	
+	
 	@GetMapping("/acceso")
 	public String contraseñaAcesso(Model model) {
 		model.addAttribute("peso", true);
@@ -29,10 +56,8 @@ public class UsuarioController {
 	@PostMapping("/control")
 	public String contraseñaControl(Model model, @RequestParam("codigo") String codigo) {
 		
-		System.out.println("el codigo enviado es: "+codigo);
 		if(usuarioService.verificarUsuario(codigo)) {
 			usuario = usuarioService.obtenerUsuario(codigo);
-			System.out.println("usuario obtenido: "+ usuario.getNombre());
 			model.addAttribute("usuario", usuarioService.obtenerUsuario(codigo));
 			model.addAttribute("peso", usuarioService.calcularPesoIdeal(usuario.getFecha_nacimiento()));
 			return "peso";

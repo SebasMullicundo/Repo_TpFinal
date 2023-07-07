@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.entity.Receta;
+import ar.edu.unju.fi.entity.Usuario;
 import ar.edu.unju.fi.service.IIngredienteService;
 import ar.edu.unju.fi.service.IRecetaService;
+import ar.edu.unju.fi.service.IUsuarioService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -29,6 +32,38 @@ public class RecetaController {
 	
 	@Autowired
 	private IIngredienteService ingredienteService;
+	
+	@Autowired
+	private IUsuarioService usuarioService;
+	
+	@Autowired
+	private Usuario usuario;
+	
+	@GetMapping("/acceso")
+	public String contraseñaAcesso(Model model) {
+		model.addAttribute("recetas", true);
+		return "control";
+	}
+	
+	@PostMapping("/control")
+	public String contraseñaControl(Model model, @RequestParam("codigo") String codigo) {
+
+		if(usuarioService.verificarUsuario(codigo)) {
+			usuario = usuarioService.obtenerUsuario(codigo);
+			if(usuario.getRol()) {
+				return "redirect:/recetas/listado";
+			}
+			else {
+				model.addAttribute("recetas", true);
+				model.addAttribute("mensaje2", true);
+				return "control";
+			}
+		} else {
+			model.addAttribute("recetas", true);
+			model.addAttribute("mensaje1", true);
+			return "control";
+		}
+	}
 	
 	@GetMapping("/vista")
 	public String listaRecetas(Model model) {
