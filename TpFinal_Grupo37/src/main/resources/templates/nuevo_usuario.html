@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+	<head lang="es">
+		<meta charset="UTF-8">
+		<title>Contacto</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Inclusión del archivo CSS de Bootstrap -->
+		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/estilos/estilos.css}">
+	</head>
+	<body>
+	
+		<!-- Navegación -->
+		<nav th:replace="~{layouts/nav :: nav}"></nav>
+	
+	    <div class="container peso_container d-flex align-items-center justify-content-center">
+            <h1 class="peso_titulo">Usuario <span th:text="${nombreUsuario}"></span> creado</h1>
+            <p class="container__subtitulo m-5">Codigo de usuario: <strong th:text="${codigoUsuario}"></strong> </p>
+            <a class="servicio__enlace btn boton-imc" th:href="@{/index}">Regresar</a>
+        </div>
+
+	
+	    <!-- footer -->
+		<footer th:replace="~{layouts/footer :: footer}"></footer>
+		<!-- Inclusión del archivo JavaScript de Bootstrap -->
+		<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	</body>
+</html>

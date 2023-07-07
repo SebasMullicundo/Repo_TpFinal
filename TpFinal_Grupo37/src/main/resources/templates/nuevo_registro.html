@@ -14,79 +14,71 @@
 <nav th:replace="~{layouts/nav :: nav}"></nav>
 	
 <!-- Contenido del formulario -->
-<section class="hero">
-  <div class="container centro">
-    <div class="p-3 mb-2 bg-body-tertiary">
-      <form class="form-centro">
-        <h3>Formulario de Usuario</h3>
-        <div class="form-group">
-          <label for="nombre" class="col-md-4 text-center control-label"><i class="fa fa-user fa-2x"></i></label>
-          <div class="col-md-10">
-            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
-          </div>
+
+<div class="container mb-5 mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form class="form-container" th:action="${edicion}? @{/usuarios/modificar_usuario} : @{/usuarios/guardar_usuario}" th:object="${usuario}" method="post">
+        <h2 class="peso_titulo" th:text="${edicion}? 'Modificar usuario' : 'Nuevo usuario'"></h2>
+
+        <div class="mb-3">
+        	<label>Nombre</label>
+          	<input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}">
+          	<div class="p-1 mt-1 mb-2 bg-danger text-white rounded-1" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
         </div>
-        <div class="form-group">
-          <label for="apellido" class="col-md-4 text-center control-label"><i class="fa fa-user fa-2x"></i></label>
-          <div class="col-md-10">
-            <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" required>
-          </div>
+
+        <div class="mb-3">
+        	<label>Apellido</label>
+          	<input type="text" class="form-control" id="apellido" name="apellido" th:field="*{apellido}">
+          	<div class="p-1 mt-1 mb-2 bg-danger text-white rounded-1" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
         </div>
-        <div class="form-group">
-          <label for="email" class="col-md-4 text-center control-label"><i class="fa fa-user fa-2x"></i></label>
-          <div class="col-md-10">
-            <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" required>
-          </div>
+
+        <div class="mb-3">
+          	<label>Email</label>
+          	<input type="text" class="form-control" id="email" name="email" th:field="*{email}">
+          	<div class="p-1 mt-1 mb-2 bg-danger text-white rounded-1" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
         </div>
-        <div class="form-group">
-          <label for="fecha_nacimiento" class="col-md-4 text-center control-label"><i class="fa fa-user fa-2x"></i></label>
-          <div class="col-md-10">
-            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha de nacimiento" required>
-          </div>
+
+        <div class="mb-3">
+        	<label>Fecha de nacimiento</label>
+          	<input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" th:field="*{fecha_nacimiento}">
+          	<div class="p-1 mt-1 mb-2 bg-danger text-white rounded-1" th:if="${#fields.hasErrors('fecha_nacimiento')}" th:errors="*{fecha_nacimiento}"></div>
         </div>
-        <div class="form-group">
-          <label for="telefono" class="col-md-4 text-center control-label"><i class="fa fa-user fa-2x"></i></label>
-          <div class="col-md-10">
-            <input type="number" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" required>
-          </div>
+
+        <div class="mb-3">
+        	<label>Teléfono</label>
+          	<input type="number" class="form-control" id="telefono" name="telefono" th:field="*{telefono}">
+          	<div class="p-1 mt-1 mb-2 bg-danger text-white rounded-1" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></div>
         </div>
-        <div class="form-group">
-          <label for="sexo" class="col-md-4 text-center control-label"><i class="fa fa-user fa-2x"></i></label>
-          <div class="col-md-10">
-            <select class="form-control" id="sexo" name="sexo" required>
-              <option value="">Seleccione su sexo</option>
-              <option value="masculino">Masculino</option>
-              <option value="femenino">Femenino</option>
-              <option value="otro">Otro</option>
-            </select>
-          </div>
+
+        <div class="mb-3">
+        	<label>Género</label>
+          	<select class="form-control" id="sexo" name="sexo" th:field="*{sexo}">
+            	<option value="">Seleccione su género</option>
+            	<option value="masculino">Masculino</option>
+            	<option value="femenino">Femenino</option>
+          	</select>
+          <div class="p-1 mt-1 mb-2 bg-danger text-white rounded-1" th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></div>
         </div>
-        <div class="form-group">
-          <label for="estatura" class="col-md-4 text-center control-label"><i class="fa fa-user fa-2x"></i></label>
-          <div class="col-md-10">
-            <input type="number" class="form-control" id="estatura" name="estatura" placeholder="Estatura en cm" required>
-          </div>
+
+        <div class="mb-3">
+        	<label>Estatura en cm</label>
+          	<input type="text" class="form-control" id="estatura" name="estatura" th:field="*{estatura}">
+          	<div class="p-1 mt-1 mb-2 bg-danger text-white rounded-1" th:if="${#fields.hasErrors('estatura')}" th:errors="*{estatura}"></div>
         </div>
-        <div class="form-group">
-          <label for="rol" class="col-md-4 text-center control-label"><i class="fa fa-user fa-2x"></i></label>
-          <div class="col-md-10">
-            <select class="form-control" id="rol" name="rol" required>
-              <option value="">Seleccione su rol</option>
-              <option value="administrador">Administrador</option>
-              <option value="usuario">Usuario común</option>
-            </select>
-          </div>
+
+        <div class="mb-3 form-check">
+          	<input type="checkbox" class="form-check-input" id="rol" name="rol" th:checked="${usuario.rol}" th:field="*{rol}">
+          	<label class="form-check-label" for="rol">Administrador</label>
         </div>
-        <br>
-        <div class="form-group">
-          <div  class="d-grid gap-2 col-6 mx-auto">
-            <button type="submit" class="btn btn-primary">Guardar</button>
-          </div>
-        </div>
+
+        <input type="hidden" name="id" th:value="*{id}">
+
+        <p><input class="btn boton-imc" type="submit" th:value="${edicion}?'Modificar':'Guardar'"></p>
       </form>
     </div>
-
   </div>
-</section>
+</div>
 
 <!-- footer -->
 <footer th:replace="~{layouts/footer :: footer}"></footer>

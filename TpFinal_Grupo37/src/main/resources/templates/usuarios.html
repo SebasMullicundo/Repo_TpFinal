@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link th:rel="stylesheet" th:href="@{/estilos/estilos.css}">
+</head>
+<body>
+		
+		<nav th:replace="~{layouts/nav :: nav}"></nav>
+	     
+	     
+	     
+	     <div class="containers d-flex align-items-center justify-content-center mb-5 mt-5">
+			    <div class="table-responsive">
+			        <h1 class="peso_titulo">Usuarios</h1>
+			        <table class="table table-striped text-center tabla__container">
+			            <thead class="tabla_head">
+			                <tr>
+			                    <th scope="col">Nombre</th>
+					            <th scope="col">Apellido</th>
+					            <th scope="col">Código</th>
+					            <th scope="col">Email</th>
+					            <th scope="col">Fecha de nacimiento</th>
+					            <th scope="col">Teléfono</th>  
+					            <th scope="col">Sexo</th>  
+					            <th scope="col">Estatura</th>  
+					            <th scope="col">Rol</th>  
+					            <th scope="col">Acciones</th>  
+			                </tr>
+			            </thead>
+			            <tbody class="tabla__body">
+			                <!-- Iteración sobre la lista de recetas -->
+			                <tr th:each="usuario: ${usuarios}">
+								<td th:text="${usuario.nombre}"></td>
+								<td th:text="${usuario.apellido}"></td>
+								<td th:text="${usuario.codigo}"></td>
+								<td th:text="${usuario.email}"></td>
+								<td th:text="${#temporals.format(usuario.fecha_nacimiento,'dd/MM/yyyy')}"></td>
+								<td th:text="${usuario.telefono}"></td>
+								<td th:text="${usuario.sexo}"></td>
+								<td th:text="${usuario.estatura}"></td>
+								<td>
+								  <span th:if="${usuario.rol}">Administrador</span>
+								  <span th:unless="${usuario.rol}">No Administrador</span>
+								</td>
+								<td>
+									<a class="newlink" th:href="@{/usuarios/modificar/}+${usuario.id}">Editar</a><br>
+									<a class="newlink" th:href="@{/usuarios/eliminar/}+${usuario.id}">Eliminar</a>
+								</td>
+							</tr>
+			            </tbody>
+			        </table>
+			    </div>
+			</div>
+      
+      
+      
+      <footer th:replace="~{layouts/footer :: footer}"></footer>
+      <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

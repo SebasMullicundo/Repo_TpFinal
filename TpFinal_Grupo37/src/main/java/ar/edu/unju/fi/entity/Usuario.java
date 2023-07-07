@@ -1,87 +1,86 @@
 package ar.edu.unju.fi.entity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.*;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Component;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
+
 @Component
 @Entity
-@Table(name = "usuarios")
+@Table(name="usuarios")
 public class Usuario {
 	@Id
-	@Column(name="usuario_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "usr_id")
     private Long id;
 	
-	@Column(name="usuario_usuario")
-    private String codigo_usuario;
+	@Column(name = "usr_cod")
+    private String codigo;
+    
+	@NotEmpty(message="No puede tener el nombre vacio")
+	@Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$", message = "Solo se permiten caracteres")
+	@Pattern(regexp = "^[A-Z].*", message = "El nombre debe comenzar con una letra mayúscula")
+	@Size(min = 4, message = "El nombre debe tener al menos cuatro caracteres")
+    @Column(name = "usr_nombre")
+	private String nombre;
+    
+	@NotEmpty(message="No puede tener el nombre vacio")
+	@Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$", message = "Solo se permiten caracteres")
+	@Pattern(regexp = "^[A-Z].*", message = "El nombre debe comenzar con una letra mayúscula")
+	@Size(min = 4, message = "El nombre debe tener al menos cuatro caracteres")
+    @Column(name = "usr_apellido")
+	private String apellido;
+    
+	@NotEmpty(message="El email no puede estar vacío")
+	@Pattern(regexp="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}", message="Ingrese un correo electrónico válido. Ej:ejemplo123@gmail.com")
+    @Column(name = "usr_gmail")
+	private String email;
 	
-    @NotBlank(message= "Debe tener un nombre")
-    @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$", message = "Solo se permiten caracteres")
-    @Pattern(regexp = "^[A-Z].*", message = "El nombre debe comenzar con una letra mayúscula")
-    @Size(min = 5, message = "El nombre debe tener al menos cinco caracteres")
-    @Column(name="usuario_nombre")
-    private String nombre;
-    
-    @NotBlank(message= "Debe tener un apellido")
-    @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$", message = "Solo se permiten caracteres")
-    @Pattern(regexp = "^[A-Z].*", message = "El apellido debe comenzar con una letra mayúscula")
-    @Size(min = 5, message = "El apellido debe tener al menos cinco caracteres")
-    @Column(name="usuario_apellido")
-    private String apellido;
-    
-    @NotBlank(message = "El gmail no puede estar vacío")
-    @Column(name="usuario_email")
-    private String email;
-    
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @NotNull(message="Debe seleccionar una fecha")
     @Past(message="La fecha debe ser menor a la fecha actual")
-    @Column(name="usuario_fecha")
+    @Column(name = "usr_nac")
     private LocalDate fecha_nacimiento;
     
     @NotBlank(message = "El telefono no puede estar vacío")
-    @Size(min = 10, message = "El telefono debe tener al menos diez caracteres")
-    @Column(name="usuario_telefono")
+    @Column(name = "usr_telef")
     private String telefono;
     
     @NotBlank(message = "Seleccione una opcion")
-    @Column(name="usuario_sexo")
+    @Column(name = "sexo")
     private String sexo;
     
-    @NotBlank(message = "La estatura no puede estar vacia")
-    @Min(value = 0, message = "No puede ser negativo")
-    @Column(name="usuario_estatura")
-    private Long estatura;
+    @NotNull(message = "La estatura no puede estar vacia")
+    @Pattern(regexp = "^[0-9]+$", message = "La estatura debe debe ser en centimetros")
+    @Column(name = "usr_altura")
+    private String estatura;
     
-    @NotBlank(message = "Seleccione una opcion")
-    @Column(name="usuario_rol")
-    private String rol;
+    @Column(name = "usr_rol")
+    private boolean rol;
     
-    @Column(name="usuario_estado")
+    @Column(name = "usr_estado")
     private boolean estado;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "imc_id")
-    private IMC imc;
-
+    
     public Usuario() {
-    }
+		// TODO Auto-generated constructor stub
+	}
 
-    public Usuario(Long id, String codigo_usuario, String nombre, String apellido, String email,
-                   @NotNull(message = "La fecha no puede ser null") LocalDate fecha_nacimiento, String telefono, String sexo, Long estatura, String rol, boolean estado) {
+    public Usuario(Long id, String codigo, String nombre, String apellido, String email, LocalDate fecha_nacimiento, String telefono, String sexo, String estatura, boolean rol, boolean estado) {
         this.id = id;
-        this.codigo_usuario = codigo_usuario;
+        this.codigo = codigo;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -101,12 +100,12 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getCodigo_usuario() {
-        return codigo_usuario;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setCodigo_usuario(String codigo_usuario) {
-        this.codigo_usuario = codigo_usuario;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getNombre() {
@@ -157,19 +156,19 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    public Long getEstatura() {
+    public String getEstatura() {
         return estatura;
     }
 
-    public void setEstatura(Long estatura) {
+    public void setEstatura(String estatura) {
         this.estatura = estatura;
     }
 
-    public String getRol() {
+    public boolean getRol() {
         return rol;
     }
 
-    public void setRol(String rol) {
+    public void setRol(boolean rol) {
         this.rol = rol;
     }
 
