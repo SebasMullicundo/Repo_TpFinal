@@ -12,5 +12,5 @@ public interface IRecetaRepository extends CrudRepository<Receta, Long>{
 
 	public List<Receta> findByEstado(boolean estado);
 	
-	public List<Receta> findByCategoria(String categoria);
+	public List<Receta> findByCategoriaAndEstado(String categoria, boolean estado);
 }

@@ -16,7 +16,7 @@
 	<div class="container d-flex align-items-center justify-content-center mt-5 mb-5 p-4">
 	  <div class="row">
 	    <div class="col-md-6 d-flex align-items-center justify-content-center">
-	      <img th:src="@{'/img/'+${receta.nombreImg}+'.jpg'}" alt="receta" class="receta_detalle_img">
+	      <img th:src="@{'/img/'+${receta.categoria}+${receta.nombreImg}+'.jpg'}"  alt="receta" class="receta_detalle_img">
 	    </div>
 	    <div class="col-md-6">
 	      <h2 th:text="${receta.nombre}" class="receta_titulo"></h2>
@@ -36,7 +36,7 @@
 				 </script>
 				</li>
 			</ul>
-			<a th:href="@{/recetas/vista}" class="btn boton-imc" role="button">Regresar</a>
+			<a th:href="@{/recetas/filtro/}+${receta.categoria}" class="btn boton-imc" role="button">Regresar</a>
 	    </div>
 	  </div>
 	</div>

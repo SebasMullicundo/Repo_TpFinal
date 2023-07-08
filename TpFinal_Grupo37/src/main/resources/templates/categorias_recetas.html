@@ -10,29 +10,31 @@
 <body>
     <!-- Navegación -->
     <nav th:replace="~{layouts/nav :: nav}"></nav>
-
-    <!-- Contenedor de categorías -->
-    <div class="container d-flex align-items-center justify-content-center mb-5 mt-5">
-        <div class="table-responsive">
-            <h1 class="peso_titulo">Categorías de recetas</h1>
-            <table class="table table-striped text-center tabla__container">
-                <thead class="tabla_head">
-                    <tr>
-                        <th>Categoría</th>
-                    </tr>
-                </thead>
-                <tbody class="tabla__body">
-                    <!-- Iteración sobre la lista de categorías -->
-                    <tr th:each="categoria: ${categorias}">
-                        <td class="tabla__dato">
-                            <!-- Enlace a la vista de recetas por categoría -->
-                            <a th:href="@{/recetas/categoria/} + ${categoria}" th:text="${categoria}"></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    
+     <!-- Contenedor de categorías -->
+    <div class="container peso_container d-flex align-items-center justify-content-center mt-2">
+		<h2 class="peso_titulo">Categorías</h2>
+        <section class="container mt-5 mb-5">
+		  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+		    <div th:each="categoria: ${categorias}" class="col-10">
+		      <div class="card h-100">
+		        <div class="d-flex justify-content-center align-items-center">
+			        <img th:src="@{'/img/'+${categoria}+'.jpg'}"  alt="Receta" class="rounded-circle mt-4" style="width: 250px; height: 250px;">
+			    </div>
+		        <div class="card-body text-center">
+		          <h4 class="text-center" th:text="${categoria}"></h4>
+				  <p class="text-center"><a th:href="@{/recetas/filtro/}+${categoria}" class="btn boton-imc" role="button">Ver Recetas</a></p>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		  <p class="text-center m-4"><a th:href="@{/index}" class="btn boton-imc" role="button">Regresar</a></p>
+		</section>
     </div>
+    
+    
+    
+    
 
     <!-- footer -->
     <footer th:replace="~{layouts/footer :: footer}"></footer>
