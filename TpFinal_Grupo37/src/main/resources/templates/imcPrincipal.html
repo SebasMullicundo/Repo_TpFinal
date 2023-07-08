@@ -1,0 +1,29 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>imcPrincipal</title>
+    <!-- Inclusión del archivo CSS de Bootstrap -->
+  	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/estilos/estilos.css}">
+  </head>
+  <body>
+  	<!-- Navegación -->
+  	<nav th:replace="~{layouts/nav :: nav}"></nav>
+  	
+  	<form class="my-form" th:action="@{/imc/usuarioIngreso}" method="get">
+  	   <input type="hidden" th:value="${opcion}" name="opcion">
+       <label>Codigo Usuario</label>
+	   <input type="text" name="id">
+	   <input type="submit">
+	   <div th:text="${error}"></div>
+  	</form>
+  	
+ 	<!-- footer -->
+	<footer th:replace="~{layouts/footer :: footer}"></footer>
+  <!-- Inclusión del archivo JavaScript de Bootstrap -->
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>
+

@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -14,6 +15,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
@@ -64,9 +66,9 @@ public class Usuario {
     private String sexo;
     
     @NotNull(message = "La estatura no puede estar vacia")
-    @Pattern(regexp = "^[0-9]+$", message = "La estatura debe debe ser en centimetros")
+    //@Pattern(regexp = "^[0-9]+$", message = "La estatura debe debe ser en centimetros")
     @Column(name = "usr_altura")
-    private String estatura;
+    private int estatura;
     
     @Column(name = "usr_rol")
     private boolean rol;
@@ -74,11 +76,12 @@ public class Usuario {
     @Column(name = "usr_estado")
     private boolean estado;
     
+    @OneToMany(mappedBy = "usuario")
+    private List<IMC> imc;
     public Usuario() {
-		// TODO Auto-generated constructor stub
 	}
 
-    public Usuario(Long id, String codigo, String nombre, String apellido, String email, LocalDate fecha_nacimiento, String telefono, String sexo, String estatura, boolean rol, boolean estado) {
+    public Usuario(Long id, String codigo, String nombre, String apellido, String email, LocalDate fecha_nacimiento, String telefono, String sexo,int estatura, boolean rol, boolean estado) {
         this.id = id;
         this.codigo = codigo;
         this.nombre = nombre;
@@ -156,11 +159,11 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    public String getEstatura() {
+    public int getEstatura() {
         return estatura;
     }
 
-    public void setEstatura(String estatura) {
+    public void setEstatura(int estatura) {
         this.estatura = estatura;
     }
 

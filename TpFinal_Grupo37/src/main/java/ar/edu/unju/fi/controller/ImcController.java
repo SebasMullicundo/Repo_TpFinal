@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ar.edu.unju.fi.entity.IMC;
 import ar.edu.unju.fi.entity.Usuario;
 import ar.edu.unju.fi.service.IImcService;
+import ar.edu.unju.fi.service.IUsuarioService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -24,11 +25,13 @@ public class ImcController {
 	
 	@Autowired
 	private IImcService imcService;
+	@Autowired
+	private IUsuarioService usuarioService;
 	
-    private Usuario usuario;
 	@GetMapping("/principal/{opcion}")
 	public String getPrincipalPage(@PathVariable(value="opcion")Boolean opcion,Model model) {
-		model.addAttribute("opcion", opcion);
+		model.addAttribute("error", "");
+		model.addAttribute("opcion", String.valueOf(opcion));
 		return "imcPrincipal";
 	}
 	
@@ -36,29 +39,37 @@ public class ImcController {
 	 * el indice corporal y los datos del usuario*/
 	@GetMapping("/usuarioIngreso")
 	public String getUserPage(@Valid @RequestParam("id")String id,@RequestParam("opcion")boolean opcion, Model model) {
-		  if(opcion) { 
-		   model.addAttribute("listaImc", imcService.getListaImcFiltrado(usuario, true));
-	       model.addAttribute("usuario", usuario);
-	       return "listadoImc";
+	  	  Usuario user = usuarioService.obtenerUsuario(id);
+	  	if(user!=null) {
+		if(opcion) { 
+			model.addAttribute("listaImc", imcService.getListaImcFiltrado(user, true));
+	       model.addAttribute("usuario", user);
+	       model.addAttribute("aviso", "");
+	       return "imc";
 		  }
-		  model.addAttribute("usuario", usuario);
+		  model.addAttribute("usuario", user);
 		  return "pesoIdeal";
+	  	}
+	  	model.addAttribute("opcion", opcion);
+	  	model.addAttribute("error", "el codigo de usuario ingresado no existe");
+	  	return "imcPrincipal";
     }
 	
 	@PostMapping("/GuardarImc")
-	public String getGuardarImcPage(@Valid @RequestParam("peso")float peso,@ModelAttribute("usuario")Usuario usuario,@RequestParam("listaImc")List<IMC> listaImc, BindingResult result,Model model){
-		if(result.hasErrors()) {
-	      model.addAttribute("listaImc",listaImc);
-		  model.addAttribute("usuario", usuario);	
-		  return "listadoImc"; 
-		}
-		IMC imc = imcService.getImc();
-		imcService.guardarImc(imc, usuario);
-	    listaImc = imcService.getListaImcFiltrado(usuario, true);
-		model.addAttribute("listaImc",listaImc);
-		model.addAttribute("usuario", usuario);
-		model.addAttribute("imc", imc);
-		return "listadoImc";
+	public String getGuardarImcPage(@Valid @RequestParam("peso")float peso,@RequestParam("id")String id,Model model){
+		
+		imcService.guardarImc(usuarioService.obtenerUsuario(id));
+		model.addAttribute("listaImc",imcService.getListaImcFiltrado(usuarioService.obtenerUsuario(id), true));
+		model.addAttribute("usuario", usuarioService.obtenerUsuario(id));
+		model.addAttribute("aviso", imcService.calcularIMC(usuarioService.obtenerUsuario(id),peso));
+		return "imc";
 	}
+	@GetMapping("/edadIngreso")
+	public String getPesoIdealPage(@RequestParam("edad")int edad,@RequestParam(value="id")String id,Model model){
+		model.addAttribute("aviso", usuarioService.pesoIdeal(usuarioService.obtenerUsuario(id), edad));
+		model.addAttribute("usuario", usuarioService.obtenerUsuario(id));
+		return "pesoIdeal";
+	}
+	
 }
 

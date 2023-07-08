@@ -5,12 +5,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.PastOrPresent;
 
 import java.time.LocalDate;
 
@@ -24,15 +28,13 @@ public class IMC {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Imc_id")
     private Long id;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    @NotNull(message="Debe seleccionar la fecha")
-    @Past(message="La fecha debe ser menor a la fecha actual")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+    //@NotNull(message="Debe seleccionar la fecha")
     @Column(name ="Imc_fecha")
     private LocalDate fechaIMC;
     
-    @NotBlank(message= "Debe seleccionar un usuario")
-    @OneToOne(mappedBy = "imc")
-    @PrimaryKeyJoinColumn
+    @ManyToOne
+    @JoinColumn(name="usr_id")
     private Usuario usuario;
 
     @Column(name="Imc_estado")
@@ -48,17 +50,6 @@ public class IMC {
     	
     }
     
-    public String calcularIMC(Usuario usuario,float peso){
-    	double resultado = peso/(usuario.getEstatura()*usuario.getEstatura());
-    	if(resultado < 18.5){
-    		return "Está por debajo de su peso ideal";
-    	}else {
-    		 if(resultado >= 18.5 && resultado <= 25) {
-    			 return "esta en su peso normal";
-    		 }
-    	}
-    	return "tiene sobrepeso";
-    }
     
     
     public long getId() {
@@ -93,4 +84,5 @@ public class IMC {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
 }
