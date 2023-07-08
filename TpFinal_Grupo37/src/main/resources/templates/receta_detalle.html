@@ -24,18 +24,13 @@
 	      <ul th:each="ingrediente:${ingredientes}">
 	      	<li th:text="${ingrediente.nombre}"></li>
 	      </ul>
-	      	<h2 class="receta_subtitulo">Preparación</h2>
-	      	<ul>
-	      		<li th:each="ingrediente: ${receta.preparacion}">
-			    <script th:inline="javascript">
-			     var cadena = '[[${ingrediente}]]';
-			     var subcadenas = cadena.split(".");
-			     for (var i = 0; i < subcadenas.length; i++) {
-			     document.write("<li>" + subcadenas[i]  + "</li>");
-			     }
-				 </script>
-				</li>
-			</ul>
+			<h2 class="receta_subtitulo">Preparación</h2>
+			<td class="tabla__dato" style="text-align: left;">
+				<!-- Iteración sobre la lista de ingredientes de la receta -->
+				<ul>
+					<li th:each="preparacion: ${receta.listaPreparaciones}" th:text="${preparacion}"></li>
+				</ul>
+			</td>
 			<a th:href="@{/recetas/filtro/}+${receta.categoria}" class="btn boton-imc" role="button">Regresar</a>
 	    </div>
 	  </div>

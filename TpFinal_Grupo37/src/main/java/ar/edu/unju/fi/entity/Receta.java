@@ -20,6 +20,15 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+/**
+ @author Chosco
+ @author Delgado
+ @author Mullicundo
+ @author Ordonez
+ @author Villalba
+ @version 17
+ */
+
 @Component
 @Entity
 @Table(name = "recetas")
@@ -66,6 +75,15 @@ public class Receta {
 		
 	}
 
+	/**
+	 Constructor de la clase Receta.
+	 @param nombre
+	 @param categoria
+	 @param ingredientes
+	 @param preparacion
+	 @param nombreImg
+	 @param estado
+	 */
 	public Receta(String nombre, String categoria, List<Ingrediente> ingredientes, String preparacion, String nombreImg,
 			boolean estado) {
 		super();
