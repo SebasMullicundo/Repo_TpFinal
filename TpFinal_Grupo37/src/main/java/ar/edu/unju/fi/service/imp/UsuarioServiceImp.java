@@ -100,11 +100,12 @@ public class UsuarioServiceImp implements IUsuarioService{
 		
 		System.out.println("edad: "+edad);
 		
-		int estatura = Integer.parseInt(usuario.getEstatura());
-		
-		float pesoIdeal = (float) (estatura - 100 + (((float) edad / 10) * 0.9));
+		float pesoIdeal = (float) (usuario.getEstatura() - 100 + (((float) edad / 10) * 0.9));
 		
 		return pesoIdeal;
 	}
-
+	
+	public float pesoIdeal(Usuario usuario, int edad) {
+		return (usuario.getEstatura() - 100 + (( (float) edad / 10) * 0.9F));
+	}
 }

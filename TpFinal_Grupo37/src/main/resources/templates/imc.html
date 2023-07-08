@@ -18,43 +18,27 @@
 	  <div class="row">
 	    <div class="col-md-12">
 	      <h2 class="peso_titulo">Indice de masa corporal</h2>
-	      <form>
+	      <form th:action="@{/imc/GuardarImc}" th:object="${usuario}" method="post">
 	        <div class="form-group mt-4">
-	          <label for="inputNombre">Peso:</label>
-	          <input type="number" class="form-control" id="inputNombre" placeholder="Ingrese su peso">
+	          <label for="peso">Peso:</label>
+	          <input type="hidden" name="id" th:value="${usuario.codigo}">
+	          <input type="number" class="form-control" name="peso" id="peso" placeholder="Ingrese su peso">
 	        </div>
 	        <button type="submit" class="btn boton-imc mb-4 mt-3">Enviar</button>
 	      </form>
+	      <div th:text="${aviso}"></div>
 	    </div>
 	    <div class="col-md-12">
 	      <div class="table-responsive">
 	        <table class="table">
 	          <thead>
 	            <tr>
-	              <th>Fecha</th>
-	              <th>Nombre</th>
-	              <th>Apellido</th>
-	              <th>Peso</th>
+	              <th>Fecha IMC</th>
 	            </tr>
 	          </thead>
 	          <tbody>
-	            <tr>
-	              <td>Dato 1</td>
-	              <td>Dato 2</td>
-	              <td>Dato 3</td>
-	              <td>Dato 4</td>
-	            </tr>
-	            <tr>
-	              <td>Dato 5</td>
-	              <td>Dato 6</td>
-	              <td>Dato 7</td>
-	              <td>Dato 8</td>
-	            </tr>
-	            <tr>
-	              <td>Dato 9</td>
-	              <td>Dato 10</td>
-	              <td>Dato 11</td>
-	              <td>Dato 12</td>
+	            <tr th:each="imc : ${listaImc}">
+	              <td th:text="${imc.fechaIMC}"></td>
 	            </tr>
 	          </tbody>
 	        </table>

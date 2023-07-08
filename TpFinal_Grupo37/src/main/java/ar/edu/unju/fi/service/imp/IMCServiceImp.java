@@ -24,7 +24,8 @@ public class IMCServiceImp implements IImcService {
     }
 
     @Override
-    public void guardarImc(IMC imc,Usuario usuario) {
+    public void guardarImc(Usuario usuario) {
+    	IMC imc = new IMC();
         imc.setEstado(true);
         imc.setFechaIMC(LocalDate.now());
         imc.setUsuario(usuario);
@@ -51,6 +52,17 @@ public class IMCServiceImp implements IImcService {
     @Override
     public List<IMC> getListaImcFiltrado(Usuario usuario,boolean estado){
     	Sort sortByFechaDesc = Sort.by(Sort.Direction.DESC, "fechaIMC");
-    	return imcRepository.findByUsuario(usuario, estado, sortByFechaDesc);
+    	return imcRepository.findByUsuarioAndEstado(usuario, estado,sortByFechaDesc);
+    }
+    public String calcularIMC(Usuario usuario,float peso) {
+    	double resultado = (float) peso/(((float) usuario.getEstatura()/100)*( (float) usuario.getEstatura()/100));
+    	if(resultado < 18.5){
+    		return "Está por debajo de su peso ideal";
+    	}else {
+    		 if(resultado >= 18.5 && resultado <= 25) {
+    			 return "esta en su peso normal";
+    		 }
+    	}
+    	return "tiene sobrepeso";
     }
 }

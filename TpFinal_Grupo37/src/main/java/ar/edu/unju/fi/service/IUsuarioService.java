@@ -24,4 +24,6 @@ public interface IUsuarioService {
 	void modificarUsuario(Usuario usuario);
 
 	public Usuario nuevoUsuario();
+	
+	public float pesoIdeal(Usuario usuario, int edad);
 }

@@ -1,0 +1,28 @@
+
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>pesoIdeal</title>
+    <!-- Inclusión del archivo CSS de Bootstrap -->
+  	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/estilos/estilos.css}">
+  </head>
+  <body>
+  	<!-- Navegación -->
+  	<nav th:replace="~{layouts/nav :: nav}"></nav>
+  	<form class="my-form" th:action="@{/imc/edadIngreso}" method="get">
+       <input type="hidden" th:value="${usuario.codigo}" name="id">
+       <label>Edad usuario</label>
+	   <input type="number" name="edad">
+	   <input type="submit">
+	   <div>Su peso ideal es: </div>
+  	   <div th:text="${aviso}"></div>
+  	</form>
+ 	<!-- footer -->
+	<footer th:replace="~{layouts/footer :: footer}"></footer>
+  <!-- Inclusión del archivo JavaScript de Bootstrap -->
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>
