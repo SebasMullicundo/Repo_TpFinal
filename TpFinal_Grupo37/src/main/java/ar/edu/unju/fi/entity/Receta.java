@@ -20,52 +20,71 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+/**
+ @author Chosco
+ @author Delgado
+ @author Mullicundo
+ @author Ordonez
+ @author Villalba
+ @version 17
+ */
+
 @Component
 @Entity
 @Table(name = "recetas")
 public class Receta {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	@Column(name = "rect_id")
 	private Long id;
-	
+
 	@NotEmpty(message="No puede tener el nombre vacio")
 	@Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$", message = "Solo se permiten caracteres")
 	@Pattern(regexp = "^[A-Z].*", message = "El nombre debe comenzar con una letra mayúscula")
 	@Size(min = 4, message = "El nombre debe tener al menos cuatro caracteres")
 	@Column(name = "rect_nombre")
 	private String nombre;
-	
+
 	@NotEmpty(message="Debe seleccionar una categoria")
 	@Column(name = "rect_categoria")
 	private String categoria;
-	
+
 	@NotNull(message="Debe seleccionar un ingrediente")
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "recetas-ingredientes",
+	@JoinTable(name = "recetas_ingredientes",
 	joinColumns = @JoinColumn(name = "rect_id"),
 	inverseJoinColumns = @JoinColumn(name = "ingr_id"))
 	private List<Ingrediente> ingredientes;
-	
+
 	@NotEmpty(message="El campo no puede estar vacía")
 	@Pattern(regexp = "^[A-Z].*", message = "Debe comenzar con una letra mayúscula")
 	@Size(max=600, message="La clave no puede tener mas de 600 caracteres")
 	@Column(columnDefinition = "TEXT", name = "rest_preparacion")
 	private String preparacion;
-	
+
 	@Column(name = "rect_img")
 	private String nombreImg;
-	
+
 	@Column(name = "rect_estado")
 	private boolean estado;
-	
+
 	private List<String> listaPreparaciones;
-	
+
 	public Receta() {
-		
+
 	}
 
+	/**
+	 Constructor de la clase Receta.
+	 @param nombre
+	 @param categoria
+	 @param ingredientes
+	 @param preparacion
+	 @param nombreImg
+	 @param estado
+	 */
 	public Receta(String nombre, String categoria, List<Ingrediente> ingredientes, String preparacion, String nombreImg,
 			boolean estado) {
 		super();
@@ -77,9 +96,11 @@ public class Receta {
 		this.estado = estado;
 	}
 
+
 	public Long getId() {
 		return id;
 	}
+
 
 	public void setId(Long id) {
 		this.id = id;
@@ -132,10 +153,12 @@ public class Receta {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
-	
+
+
 	public List<String> getListaPreparaciones() {
 		return listaPreparaciones;
 	}
+
 
 	public void setListaPreparaciones(List<String> listaPreparaciones) {
 		this.listaPreparaciones = listaPreparaciones;
