@@ -68,7 +68,7 @@ public class Usuario {
     @NotNull(message = "La estatura no puede estar vacia")
     //@Pattern(regexp = "^[0-9]+$", message = "La estatura debe debe ser en centimetros")
     @Column(name = "usr_altura")
-    private int estatura;
+    private float estatura;
     
     @Column(name = "usr_rol")
     private boolean rol;
@@ -81,7 +81,7 @@ public class Usuario {
     public Usuario() {
 	}
 
-    public Usuario(Long id, String codigo, String nombre, String apellido, String email, LocalDate fecha_nacimiento, String telefono, String sexo,int estatura, boolean rol, boolean estado) {
+    public Usuario(Long id, String codigo, String nombre, String apellido, String email, LocalDate fecha_nacimiento, String telefono, String sexo,float estatura, boolean rol, boolean estado) {
         this.id = id;
         this.codigo = codigo;
         this.nombre = nombre;
@@ -159,11 +159,11 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    public int getEstatura() {
+    public float getEstatura() {
         return estatura;
     }
 
-    public void setEstatura(int estatura) {
+    public void setEstatura(float estatura) {
         this.estatura = estatura;
     }
 

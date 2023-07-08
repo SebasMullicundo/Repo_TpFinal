@@ -18,7 +18,7 @@
 	   <input type="number" name="edad">
 	   <input type="submit">
 	   <div>Su peso ideal es: </div>
-  	   <div th:text="${aviso}"></div>
+  	   <div th:text="${aviso} + 'KG' "></div>
   	</form>
  	<!-- footer -->
 	<footer th:replace="~{layouts/footer :: footer}"></footer>
