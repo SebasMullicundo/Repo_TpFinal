@@ -48,6 +48,7 @@ public class ImcController {
 	       return "imc";
 		  }
 		  model.addAttribute("usuario", user);
+		  model.addAttribute("aviso", 0.0F);
 		  return "pesoIdeal";
 	  	}
 	  	model.addAttribute("opcion", opcion);
