@@ -11,7 +11,7 @@
   <body>
   	<!-- Navegación -->
   	<nav th:replace="~{layouts/nav :: nav}"></nav>
-  	
+  	<!-- formulario para el ingreso del codigo usuario -->
   	<form class="my-form" th:action="@{/imc/usuarioIngreso}" method="get">
   	   <input type="hidden" th:value="${opcion}" name="opcion">
        <label>Codigo Usuario</label>

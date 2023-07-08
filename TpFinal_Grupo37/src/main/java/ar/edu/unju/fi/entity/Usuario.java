@@ -7,11 +7,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
@@ -66,6 +68,7 @@ public class Usuario {
     private String sexo;
     
     @NotNull(message = "La estatura no puede estar vacia")
+    @Positive(message = "La estatura debe ser un valor positivo y mayor a 0")
     //@Pattern(regexp = "^[0-9]+$", message = "La estatura debe debe ser en centimetros")
     @Column(name = "usr_altura")
     private float estatura;

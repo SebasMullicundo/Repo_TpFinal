@@ -17,52 +17,62 @@
 	<div class="container peso_container d-flex align-items-center justify-content-center">
 	  <div class="row">
 	    <div class="col-md-12">
+	    <!-- Datos de usuario -->
 	    <div class="cajas">
-	    <div> Datos De Usuario</div>
-	    <label>Nombre:</label>
-	    <div th:text="${usuario.nombre}"></div>
-	    <label>Apellido:</label>
-	    <div th:text="${usuario.apellido}"></div>
-	    <label>Email:</label>
-	    <div th:text="${usuario.email}"></div>
-	    <label>Telefono:</label>
-	    <div th:text="${usuario.telefono}"></div>
-	    <label>Sexo:</label>
-	    <div th:text="${usuario.sexo}"></div>
-	    <label>Fecha de Nacimiento:</label>
+	    <div > Datos De Usuario</div>
+	    <label >Nombre:</label>
+	    <div  th:text="${usuario.nombre}"></div>
+	    <label >Apellido:</label>
+	    <div  th:text="${usuario.apellido}"></div>
+	    <label >Email:</label>
+	    <div  th:text="${usuario.email}"></div>
+	    <label  >Telefono:</label>
+	    <div   th:text="${usuario.telefono}"></div>
+	    <label  >Sexo:</label>
+	    <div  th:text="${usuario.sexo}"></div>
+	    <label  >Fecha de Nacimiento:</label>
 	    <div th:text="${usuario.fecha_nacimiento}"></div>
-	    <label>Estatura:</label>
-	    <div th:text="${((usuario.estatura)/100) + ' M '}"></div>
+	    <label  >Estatura:</label>
+	    <div  th:text="${((usuario.estatura)/100) + ' M '}"></div>
 	    </div>
-	      <h2 class="peso_titulo">Indice de masa corporal</h2>
-	      <form th:action="@{/imc/GuardarImc}" th:object="${usuario}" method="post">
-	        <div class="form-group mt-4">
-	          <label for="peso">Peso:</label>
-	          <input type="hidden" name="id" th:value="${usuario.codigo}">
+	   </div>
+	  </div>
+	  <!-- formulario para calcular el IMC -->
+	  <div class="row">
+	      <h2 class="peso_titulo col-md-12">Indice de masa corporal</h2>
+	      <form class="col-md-12" th:action="@{/imc/GuardarImc}" th:object="${usuario}" method="post">
+	        <div class="form-group mt-4 col-md-12">
+	          <label  for="peso">Peso:</label>
+	          <input  type="hidden" name="id" th:value="${usuario.codigo}">
 	          <input type="number" class="form-control" name="peso" id="peso" placeholder="Ingrese su peso">
 	        </div>
 	        <button type="submit" class="btn boton-imc mb-4 mt-3">Calcular IMC</button>
 	      </form>
-	      <div th:text="${aviso}"></div>
+	      <div class="col-md-12" th:text="${aviso}"></div>
 	    </div>
+	    <!-- La tabla de las fecha y registro del IMC -->
+	   <div class="row">
 	    <div class="col-md-12">
 	      <div class="table-responsive">
 	        <table class="table">
 	          <thead>
 	            <tr>
 	              <th>Fecha IMC</th>
+	              <th>Registro</th>
 	            </tr>
 	          </thead>
 	          <tbody>
 	            <tr th:each="imc : ${listaImc}">
-	              <td th:text="${imc.fechaIMC}"></td>
+	              <td th:text="${#temporals.format(imc.fechaIMC, 'yyyy-MM-dd HH:mm:ss')}"></td>
+	              <td th:text="${imc.registro}"></td>
 	            </tr>
 	          </tbody>
 	        </table>
 	      </div>
 	    </div>
-	  </div>
 	</div>
+
+ </div>
 
 
  	<!-- footer -->

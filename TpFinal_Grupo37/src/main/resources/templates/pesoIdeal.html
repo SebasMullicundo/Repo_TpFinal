@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
   <head>
@@ -12,6 +11,7 @@
   <body>
   	<!-- Navegación -->
   	<nav th:replace="~{layouts/nav :: nav}"></nav>
+  	<!-- formulario para ingresar la edad del usuario para calcular el peso ideal -->
   	<form class="my-form" th:action="@{/imc/edadIngreso}" method="get">
        <input type="hidden" th:value="${usuario.codigo}" name="id">
        <label>Edad usuario</label>
