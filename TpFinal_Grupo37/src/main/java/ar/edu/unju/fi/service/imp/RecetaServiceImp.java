@@ -69,7 +69,7 @@ public class RecetaServiceImp implements IRecetaService{
 
 	@Override
 	public List<Receta> filtroRecetaCategoria(String categoria) {
-		return recetaRepository.findByCategoria(categoria);
+		return recetaRepository.findByCategoriaAndEstado(categoria, true);
 	}
 
 	@Override
