@@ -65,6 +65,13 @@ public class RecetaController {
 		}
 	}
 	
+	@GetMapping("/categoria")
+	public String vistaCategorias(Model model) {
+		model.addAttribute("categorias", recetaService.getCategoriasUnicas(recetaService.getListaRecetas()));
+		return "categorias_recetas";
+	}
+	
+	
 	@GetMapping("/vista")
 	public String listaRecetas(Model model) {
 		model.addAttribute("recetas", recetaService.getListaRecetas());
@@ -101,7 +108,7 @@ public class RecetaController {
 		
 		recetaService.guardarReceta(receta);
 		modelView.addObject("ingredientes",ingredienteService.getListaIngredientes());
-		
+		modelView.addObject("recetas", recetaService.getListaRecetas());
 		return modelView;
 	}
 	

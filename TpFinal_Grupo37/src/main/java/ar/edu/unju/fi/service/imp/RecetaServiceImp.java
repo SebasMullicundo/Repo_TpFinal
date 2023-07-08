@@ -2,7 +2,10 @@ package ar.edu.unju.fi.service.imp;
 
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +23,10 @@ public class RecetaServiceImp implements IRecetaService{
 	@Override
 	public void guardarReceta(Receta receta) {
 		receta.setEstado(true);
-		receta.setNombreImg(receta.getCategoria());
+		int numeroImagen;
+		Random random = new Random();
+		numeroImagen = random.nextInt(3) + 1;
+		receta.setNombreImg(String.valueOf(numeroImagen));
 		recetaRepository.save(receta);
 	}
 
@@ -47,7 +53,11 @@ public class RecetaServiceImp implements IRecetaService{
 	@Override
 	public void modificarReceta(Receta receta) {
 		receta.setEstado(true);
-		receta.setNombreImg(receta.getCategoria());
+		int numeroImagen;
+		Random random = new Random();
+		numeroImagen = random.nextInt(3) + 1;
+		
+		receta.setNombreImg(String.valueOf(numeroImagen));
 		recetaRepository.save(receta);
 	}
 
@@ -69,4 +79,12 @@ public class RecetaServiceImp implements IRecetaService{
         return listaSubcadenas;
     }
 
+	@Override
+	public Set<String> getCategoriasUnicas(List<Receta> recetas) {
+		Set<String> categorias = new HashSet<>();
+		for(Receta receta : recetas) {
+			categorias.add(receta.getCategoria());
+		}
+		return categorias;
+	}
 }

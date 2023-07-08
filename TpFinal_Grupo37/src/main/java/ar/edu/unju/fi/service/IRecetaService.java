@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.service;
 
 import java.util.List;
+import java.util.Set;
 
 import ar.edu.unju.fi.entity.Receta;
 
@@ -21,4 +22,6 @@ public interface IRecetaService {
 	public List<Receta> filtroRecetaCategoria(String categoria);
 	
 	List<String> generarLista(String cadena);
+	
+	Set<String> getCategoriasUnicas(List<Receta> recetas);
 }
