@@ -63,7 +63,7 @@
 
         <div class="mb-3">
         	<label>Estatura en cm</label>
-          	<input type="text" class="form-control" id="estatura" name="estatura" th:field="*{estatura}">
+          	<input type="number" class="form-control" id="estatura" name="estatura" th:field="*{estatura}">
           	<div class="p-1 mt-1 mb-2 bg-danger text-white rounded-1" th:if="${#fields.hasErrors('estatura')}" th:errors="*{estatura}"></div>
         </div>
 

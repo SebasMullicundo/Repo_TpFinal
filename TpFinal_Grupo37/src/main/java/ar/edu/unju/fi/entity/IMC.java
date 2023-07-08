@@ -17,6 +17,7 @@ import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.PastOrPresent;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
@@ -28,10 +29,13 @@ public class IMC {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Imc_id")
     private Long id;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     //@NotNull(message="Debe seleccionar la fecha")
     @Column(name ="Imc_fecha")
-    private LocalDate fechaIMC;
+    private LocalDateTime fechaIMC;
+	@NotBlank(message = "no puede estar vacio")
+	@Column(name = "Imc_registro")
+	private String registro;
     
     @ManyToOne
     @JoinColumn(name="usr_id")
@@ -40,7 +44,7 @@ public class IMC {
     @Column(name="Imc_estado")
     private boolean estado;
 
-    public IMC(Long id, @NotNull(message = "Debe seleccionar una fecha") LocalDate fechaIMC, Usuario usuario, boolean estado) {
+    public IMC(Long id, @NotNull(message = "Debe seleccionar una fecha") LocalDateTime fechaIMC, Usuario usuario, boolean estado) {
         this.id = id;
         this.fechaIMC = fechaIMC;
         this.usuario = usuario;
@@ -60,11 +64,11 @@ public class IMC {
         this.id = id;
     }
 
-    public LocalDate getFechaIMC() {
+    public LocalDateTime getFechaIMC() {
         return fechaIMC;
     }
 
-    public void setFechaIMC(LocalDate fechaIMC) {
+    public void setFechaIMC(LocalDateTime fechaIMC) {
         this.fechaIMC = fechaIMC;
     }
 
@@ -83,6 +87,12 @@ public class IMC {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+    public String getRegistro() {
+    	return this.registro;
+    }
+    public void setRegistro(String registro) {
+    	this.registro = registro;
     }
 
 }

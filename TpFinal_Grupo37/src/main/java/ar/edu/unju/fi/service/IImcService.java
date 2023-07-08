@@ -12,7 +12,7 @@ public interface IImcService {
     /**
      * @method Guarda un nuevo IMC
      */
-    void guardarImc(Usuario usuario);
+    void guardarImc(Usuario usuario,String registro);
     /**
      * @method  Devuelve el IMC cuyo id coincide con el parámetro id.
      */
@@ -30,8 +30,12 @@ public interface IImcService {
      * @method Devuelve un nuevo objeto Imc
      */
     IMC getImc();
-    
+    /**
+     * @method obtiene una lista filtrada de IMC respecto a un usuario
+     */
     List<IMC> getListaImcFiltrado(Usuario usuario,boolean estado);
-    
+    /**
+     * @method devuelve un mensaje del estado del IMC de un usuario
+     */
     String calcularIMC(Usuario usuario,float peso);
 }
