@@ -69,21 +69,41 @@ public class RecetaController {
 	@PostMapping("/control")
 	public String contraseñaControl(Model model, @RequestParam("codigo") String codigo) {
 
-		if(usuarioService.verificarUsuario(codigo)) {
-			usuario = usuarioService.obtenerUsuario(codigo);
-			if(usuario.getRol()) {
-				return "redirect:/recetas/listado";
-			}
-			else {
-				model.addAttribute("recetas", true);
-				model.addAttribute("mensaje2", true);
-				return "control";
-			}
-		} else {
-			model.addAttribute("recetas", true);
-			model.addAttribute("mensaje1", true);
-			return "control";
-		}
+		/*
+		 * verifica si el usuario existe
+		 * si no existe regresa a la vista del control activando el formulario y mensaje correspondiente
+		 */
+		if (!usuarioService.verificarUsuario(codigo)) {
+	        model.addAttribute("recetas", true);
+	        model.addAttribute("mensaje1", true);
+	        return "control";
+	    }
+	    
+	    usuario = usuarioService.obtenerUsuario(codigo);
+	    
+	    /*
+		 * verifica si el estado usuario en caso de estar eliminado logicamente
+		 * si no esta activo regresa a la vista del control activando el formulario y mensaje correspondiente
+		 */
+	    if (!usuario.isEstado()) {
+	        model.addAttribute("recetas", true);
+	        model.addAttribute("mensaje1", true);
+	        return "control";
+	    }
+	    
+	    /*
+		 * verifica el rol del usuario
+		 * si es administrador redirecciona a la direccion correspondiente a la lista de usuarios
+		 */
+	    if (usuario.getRol()) {
+	        return "redirect:/recetas/listado";
+	    }
+	    
+	    
+		//si el usuario no tiene el rol administador regresa a la vista del control activando el formulario y mensaje correspondiente
+	    model.addAttribute("recetas", true);
+	    model.addAttribute("mensaje2", true);
+	    return "control";
 	}
 
 	/**

@@ -10,15 +10,16 @@
     <link rel="shortcut icon" th:href="@{/img/icono.png}">
 </head>
 <body>
-		
+		<!-- Navegación -->
 		<nav th:replace="~{layouts/nav :: nav}"></nav>
 	     
 	     
-	     
+	     <!-- Contenedor -->
 	     <div class="containers d-flex align-items-center justify-content-center mb-5 mt-5">
 			    <div class="table-responsive">
 			        <h1 class="peso_titulo">Usuarios</h1>
 			        <table class="table table-striped text-center tabla__container">
+			        	<!-- Encabezados -->
 			            <thead class="tabla_head">
 			                <tr>
 			                    <th scope="col">Nombre</th>
@@ -33,8 +34,9 @@
 					            <th scope="col">Acciones</th>  
 			                </tr>
 			            </thead>
+			            <!-- Datos -->
 			            <tbody class="tabla__body">
-			                <!-- Iteración sobre la lista de recetas -->
+			                <!-- Iteración sobre la lista de usuarios -->
 			                <tr th:each="usuario: ${usuarios}">
 								<td th:text="${usuario.nombre}"></td>
 								<td th:text="${usuario.apellido}"></td>

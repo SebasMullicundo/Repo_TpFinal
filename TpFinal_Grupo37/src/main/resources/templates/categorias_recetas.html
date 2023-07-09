@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Categorías de recetas</title>
+    <!-- Inclusión del archivo CSS de Bootstrap -->
     <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/estilos/estilos.css}">
     <link rel="shortcut icon" th:href="@{/img/icono.png}">
@@ -14,31 +15,35 @@
     
      <!-- Contenedor de categorías -->
     <div class="container peso_container d-flex align-items-center justify-content-center mt-2">
+
 		<h2 class="peso_titulo">Categorías</h2>
         <section class="container mt-5 mb-5">
-		  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
-		    <div th:each="categoria: ${categorias}" class="col-10">
-		      <div class="card h-100">
-		        <div class="d-flex justify-content-center align-items-center">
-			        <img th:src="@{'/img/'+${categoria}+'.jpg'}"  alt="Receta" class="rounded-circle mt-4" style="width: 250px; height: 250px;">
-			    </div>
-		        <div class="card-body text-center">
-		          <h4 class="text-center" th:text="${categoria}"></h4>
-				  <p class="text-center"><a th:href="@{/recetas/filtro/}+${categoria}" class="btn boton-imc" role="button">Ver Recetas</a></p>
+		    <!-- Tarjetas de categorías -->
+		    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+		        <!-- Bucle para cada categoría -->
+		        <div th:each="categoria: ${categorias}" class="col-10">
+		            <div class="card h-100">
+		                <!-- Imagen de la categoría -->
+		                <div class="d-flex justify-content-center align-items-center">
+			                <img th:src="@{'/img/'+${categoria}+'.jpg'}" alt="Receta" class="rounded-circle mt-4" style="width: 250px; height: 250px;">
+			            </div>
+		                <div class="card-body text-center">
+		                    <!-- Nombre de la categoría -->
+		                    <h4 class="text-center" th:text="${categoria}"></h4>
+		                    <!-- Enlace para ver las recetas de la categoría -->
+		                    <p class="text-center"><a th:href="@{/recetas/filtro/}+${categoria}" class="btn boton-imc" role="button">Ver Recetas</a></p>
+		                </div>
+		            </div>
 		        </div>
-		      </div>
 		    </div>
-		  </div>
-		  <p class="text-center m-4"><a th:href="@{/index}" class="btn boton-imc" role="button">Regresar</a></p>
+	
+		    <p class="text-center m-4"><a th:href="@{/index}" class="btn boton-imc" role="button">Regresar</a></p>
 		</section>
     </div>
     
-    
-    
-    
-
-    <!-- footer -->
+    <!-- Footer -->
     <footer th:replace="~{layouts/footer :: footer}"></footer>
+    <!-- Inclusión del archivo JavaScript de Bootstrap -->
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>

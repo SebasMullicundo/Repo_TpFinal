@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Servicios</title>
+		<!-- Inclusión del archivo CSS de Bootstrap -->
 		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 		<link rel="stylesheet" th:href="@{/estilos/estilos.css}">
 		<link rel="shortcut icon" th:href="@{/img/icono.png}">
@@ -14,7 +15,7 @@
 		<nav th:replace="~{layouts/nav :: nav}"></nav>
 
         
-        <!-- Contenedor de provincias -->
+        <!-- Contenedor de ingredientes -->
 		<div class="container peso_container d-flex align-items-center justify-content-center">
             <section class="table-responsive">
                 <h1 class="peso_titulo">Ingredientes</h1>
@@ -26,11 +27,11 @@
                         </tr>
                     </thead>
                     <tbody class="tabla__body">
-                    	<!-- Iteración sobre la lista de provincias -->
+                    	<!-- Iteración sobre la lista de ingredientes -->
                         <tr th:each="ingrediente: ${ingredientes}">
                             <td class="tabla__dato" th:text="${ingrediente.nombre}"></td>
                             <td class="tabla__dato">
-                            	<!-- Enlaces para editar y eliminar una provincia -->
+                            	<!-- Enlaces para editar y eliminar un ingrediente -->
                             	<a id="tabla__enlace" th:href="@{/ingredientes/modificar/} + ${ingrediente.id}">Editar</a>
                             	<a id="tabla__enlace" th:href="@{/ingredientes/eliminar/} + ${ingrediente.id}">Borrar</a>
                             </td>
@@ -41,9 +42,10 @@
             <a class="servicio__enlace btn boton-imc" th:href="@{/index}">Salir</a>
             </section>
         </div>
-        <!-- <a class="nav-link servicio__enlace" th:href="@{/sucursal/listado}">Volver a Sucursales</a> -->
+ 
         <!-- footer -->
         <footer th:replace="~{layouts/footer :: footer}"></footer>
+         <!-- Inclusión del archivo JavaScript de Bootstrap -->
         <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 	</body>
 </html>

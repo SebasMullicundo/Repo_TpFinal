@@ -1,87 +1,86 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NutriLife-Control</title>
-<!-- Inclusión del archivo CSS de Bootstrap -->
-<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-<link rel="stylesheet" th:href="@{/estilos/estilos.css}">
-<link rel="shortcut icon" th:href="@{/img/icono.png}">
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NutriLife-Control</title>
+    <!-- Inclusión del archivo CSS de Bootstrap -->
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/estilos/estilos.css}">
+    <link rel="shortcut icon" th:href="@{/img/icono.png}">
 </head>
 <body>
-	<!-- Navegación -->
-	<nav th:replace="~{layouts/nav :: nav}"></nav>
+    <!-- Navegación -->
+    <nav th:replace="~{layouts/nav :: nav}"></nav>
 
-	<!-- Contenido principal -->
-	<div th:if="${ingredientes}" class="container  peso_container d-flex align-items-center justify-content-center mt-2">
-		<div class="p-3 mb-2 bg-body-secondary">
-			<h3 class="text-center fw-semibold container__subtitulo">Ingreso</h3>
-			<form class="row g-3" th:action="@{/ingredientes/control}" method="post">
-				<div class="col-12 mb-3">
-					<label for="codigo" class="form-label container__parrafo">Ingrese su código de usuario</label> 
-					<input type="text" class="form-control" id="codigo" name="codigo" required>
-					<div th:if="${mensaje1}" class="p-1 mt-1 mb-2 bg-danger text-white rounded-1">Usuario no registrado</div>
-					<div th:if="${mensaje2}" class="p-1 mt-1 mb-2 bg-danger text-white rounded-1">El usuario no es administrador</div>
-				</div>
-				
-				<input type="submit" class="btn boton-imc" value="Ingrese">
-			</form>
-		</div>
-	</div>
-	
-	<div th:if="${recetas}" class="container  peso_container d-flex align-items-center justify-content-center mt-2">
-		<div class="p-3 mb-2 bg-body-secondary">
-			<h3 class="text-center fw-semibold container__subtitulo">Ingreso</h3>
-			<form class="row g-3" th:action="@{/recetas/control}" method="post">
-				<div class="col-12 mb-3">
-					<label for="codigo" class="form-label container__parrafo">Ingrese su código de usuario</label> 
-					<input type="text" class="form-control" id="codigo" name="codigo" required>
-					<div th:if="${mensaje1}" class="p-1 mt-1 mb-2 bg-danger text-white rounded-1">Usuario no registrado</div>
-					<div th:if="${mensaje2}" class="p-1 mt-1 mb-2 bg-danger text-white rounded-1">El usuario no es administrador</div>
-				</div>
-				
-				<input type="submit" class="btn boton-imc" value="Ingrese">
-			</form>
-		</div>
-	</div>
-	
-	<div th:if="${usuarios}" class="container  peso_container d-flex align-items-center justify-content-center mt-2">
-		<div class="p-3 mb-2 bg-body-secondary">
-			<h3 class="text-center fw-semibold container__subtitulo">Ingreso</h3>
-			<form class="row g-3" th:action="@{/usuarios/administrador_control}" method="post">
-				<div class="col-12 mb-3">
-					<label for="codigo" class="form-label container__parrafo">Ingrese su código de usuario</label> 
-					<input type="text" class="form-control" id="codigo" name="codigo" required>
-					<div th:if="${mensaje1}" class="p-1 mt-1 mb-2 bg-danger text-white rounded-1">Usuario no registrado</div>
-					<div th:if="${mensaje2}" class="p-1 mt-1 mb-2 bg-danger text-white rounded-1">El usuario no es administrador</div>
-				</div>
-				
-				<input type="submit" class="btn boton-imc" value="Ingrese">
-			</form>
-		</div>
-	</div>
-	
-	<div th:if="${testimonios}" class="container  peso_container d-flex align-items-center justify-content-center mt-2">
-		<div class="p-3 mb-2 bg-body-secondary">
-			<h3 class="text-center fw-semibold container__subtitulo">Ingreso</h3>
-			<form class="row g-3" th:action="@{/testimonios/administrador_control}" method="post">
-				<div class="col-12 mb-3">
-					<label for="codigo" class="form-label container__parrafo">Ingrese su código de usuario</label> 
-					<input type="text" class="form-control" id="codigo" name="codigo" required>
-					<div th:if="${mensaje1}" class="p-1 mt-1 mb-2 bg-danger text-white rounded-1">Usuario no registrado</div>
-					<div th:if="${mensaje2}" class="p-1 mt-1 mb-2 bg-danger text-white rounded-1">El usuario no es administrador</div>
-				</div>
-				
-				<input type="submit" class="btn boton-imc" value="Ingrese">
-			</form>
-		</div>
-	</div>
-	
-	<!-- footer -->
-	<footer th:replace="~{layouts/footer :: footer}"></footer>
-	<!-- Inclusión del archivo JavaScript de Bootstrap -->
-	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- Contenido principal -->
+    <!-- Contenedor de ingreso de ingredientes -->
+    <div th:if="${ingredientes}" class="container  peso_container d-flex align-items-center justify-content-center mt-2">
+        <div class="p-3 mb-2 bg-body-secondary">
+            <h3 class="text-center fw-semibold container__subtitulo">Ingreso</h3>
+            <form class="row g-3" th:action="@{/ingredientes/control}" method="post">
+                <div class="col-12 mb-3">
+                    <label for="codigo" class="form-label container__parrafo">Ingrese su código de usuario</label>
+                    <input type="text" class="form-control" id="codigo" name="codigo" required>
+                    <div th:if="${mensaje1}" class="p-1 mt-1 mb-2 bg-danger text-white rounded-1">Usuario no registrado</div>
+                    <div th:if="${mensaje2}" class="p-1 mt-1 mb-2 bg-danger text-white rounded-1">El usuario no es administrador</div>
+                </div>
+                <input type="submit" class="btn boton-imc" value="Ingrese">
+            </form>
+        </div>
+    </div>
+    
+    <!-- Contenedor de ingreso de recetas -->
+    <div th:if="${recetas}" class="container  peso_container d-flex align-items-center justify-content-center mt-2">
+        <div class="p-3 mb-2 bg-body-secondary">
+            <h3 class="text-center fw-semibold container__subtitulo">Ingreso</h3>
+            <form class="row g-3" th:action="@{/recetas/control}" method="post">
+                <div class="col-12 mb-3">
+                    <label for="codigo" class="form-label container__parrafo">Ingrese su código de usuario</label>
+                    <input type="text" class="form-control" id="codigo" name="codigo" required>
+                    <div th:if="${mensaje1}" class="p-1 mt-1 mb-2 bg-danger text-white rounded-1">Usuario no registrado</div>
+                    <div th:if="${mensaje2}" class="p-1 mt-1 mb-2 bg-danger text-white rounded-1">El usuario no es administrador</div>
+                </div>
+                <input type="submit" class="btn boton-imc" value="Ingrese">
+            </form>
+        </div>
+    </div>
+    
+    <!-- Contenedor de ingreso de usuarios -->
+    <div th:if="${usuarios}" class="container  peso_container d-flex align-items-center justify-content-center mt-2">
+        <div class="p-3 mb-2 bg-body-secondary">
+            <h3 class="text-center fw-semibold container__subtitulo">Ingreso</h3>
+            <form class="row g-3" th:action="@{/usuarios/administrador_control}" method="post">
+                <div class="col-12 mb-3">
+                    <label for="codigo" class="form-label container__parrafo">Ingrese su código de usuario</label>
+                    <input type="text" class="form-control" id="codigo" name="codigo" required>
+                    <div th:if="${mensaje1}" class="p-1 mt-1 mb-2 bg-danger text-white rounded-1">Usuario no registrado</div>
+                    <div th:if="${mensaje2}" class="p-1 mt-1 mb-2 bg-danger text-white rounded-1">El usuario no es administrador</div>
+                </div>
+                <input type="submit" class="btn boton-imc" value="Ingrese">
+            </form>
+        </div>
+    </div>
+    
+    <!-- Contenedor de ingreso de testimonios -->
+    <div th:if="${testimonios}" class="container  peso_container d-flex align-items-center justify-content-center mt-2">
+        <div class="p-3 mb-2 bg-body-secondary">
+            <h3 class="text-center fw-semibold container__subtitulo">Ingreso</h3>
+            <form class="row g-3" th:action="@{/testimonios/administrador_control}" method="post">
+                <div class="col-12 mb-3">
+                    <label for="codigo" class="form-label container__parrafo">Ingrese su código de usuario</label>
+                    <input type="text" class="form-control" id="codigo" name="codigo" required>
+                    <div th:if="${mensaje1}" class="p-1 mt-1 mb-2 bg-danger text-white rounded-1">Usuario no registrado</div>
+                    <div th:if="${mensaje2}" class="p-1 mt-1 mb-2 bg-danger text-white rounded-1">El usuario no es administrador</div>
+                </div>
+                <input type="submit" class="btn boton-imc" value="Ingrese">
+            </form>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer th:replace="~{layouts/footer :: footer}"></footer>
+    <!-- Inclusión del archivo JavaScript de Bootstrap -->
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
