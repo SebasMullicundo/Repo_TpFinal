@@ -20,24 +20,26 @@
 		<h1 class="text-center my-5">Testimonios</h1>
 		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 			<!-- Iteración sobre la lista de testimonio -->
-			<div class="col d-flex justify-content-center" th:each="testimonio: ${testimonios}">
-			    <div class="card p-3 text-center px-4" style="width: 18rem;">
-			        <div class="user-image">
-			            <img class="rounded-circle"
-			                th:src="@{'/img/'+${testimonio.testImg}+'.png'}"
-			                style="width: 100px;">
-			        </div>
-			        <div class="user-content">
-			            <p class="card-text" th:text="${testimonio.comentario}">
-			            <p class="testimonial-author"
-			                th:text="${testimonio.usuario.nombre}+' '+${testimonio.usuario.apellido}"></p>
-			            <p class="testimonial-text" th:text="${testimonio.fecha}"></p>
-			            <!-- Botones para editar y eliminar un consejo -->
-			            <div th:if="${acciones}">
-			                <a class="btn btn-outline-danger" th:href="@{/testimonios/eliminar/} + ${testimonio.id}">Borrar</a>
-			            </div>
-			        </div>
-			    </div>
+			<div class="col d-flex justify-content-center"
+				th:each="testimonio: ${testimonios}">
+				<div class="card p-3 text-center px-4" style="width: 18rem;">
+					<div class="user-image">
+						<img class="rounded-circle"
+							th:src="@{'/img/'+${testimonio.testImg}+'.png'}"
+							style="width: 100px;">
+					</div>
+					<div class="user-content">
+						<p class="card-text" th:text="${testimonio.comentario}">
+						<p class="testimonial-author"
+							th:text="${testimonio.usuario.nombre}+' '+${testimonio.usuario.apellido}"></p>
+						<p class="testimonial-text" th:text="${testimonio.fecha}"></p>
+						<!-- Botones para eliminar un testimonio -->
+						<div th:if="${acciones}">
+							<a class="btn btn-outline-danger"
+								th:href="@{/testimonios/eliminar/} + ${testimonio.id}">Borrar</a>
+						</div>
+					</div>
+				</div>
 			</div>
 
 		</div>
@@ -45,16 +47,19 @@
 
 		<div class="gap-2 text-center">
 			<!-- Boton para crear un nuevo testimonio -->
-			<a th:if="${guardar}" class="servicio__enlace btn boton-imc m-5" th:href="@{/testimonios/acceso}">Nuevo testimonio</a>
-			<a th:if="${salir}" class="servicio__enlace btn boton-imc m-5" th:href="@{/index}">Salir</a>
+			<a th:if="${guardar}" class="servicio__enlace btn boton-imc m-5"
+				th:href="@{/testimonios/acceso}">Nuevo testimonio</a> <a
+				th:if="${salir}" class="servicio__enlace btn boton-imc m-5"
+				th:href="@{/index}">Salir</a>
 		</div>
-		
-		
+
+
 	</div>
 
 
 	<!-- footer -->
 	<footer th:replace="~{layouts/footer :: footer}"></footer>
+
 	<!-- Inclusión del archivo JavaScript de Bootstrap -->
 	<script type="text/javascript"
 		th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
