@@ -82,5 +82,12 @@ public interface IUsuarioService {
 	 * @return peso ideal del usuario.
 	 */
 	public float pesoIdeal(Usuario usuario, int edad);
+	/**
+	 * Obtiene la edad de un usuario
+	 *
+	 * @param usuario
+	 * @return retorna la edad del usuario
+	 */
+	public int obtenerEdad(Usuario usuario);
 
 }

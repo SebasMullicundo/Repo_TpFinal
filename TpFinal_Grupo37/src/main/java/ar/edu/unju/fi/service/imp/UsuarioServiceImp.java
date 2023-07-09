@@ -142,4 +142,26 @@ public class UsuarioServiceImp implements IUsuarioService{
 	public float pesoIdeal(Usuario usuario, int edad) {
 		return (usuario.getEstatura() - 100 + (( (float) edad / 10) * 0.9F));
 	}
+	
+	/**
+	 * este metodo de implementacion obtiene la fecha de nacimiento
+	 * del usuario que llega como parametro y la fecha actual
+	 * y mediante la resta se obtiene los años de la persona y
+	 * se obtiene la edad con condiciones "si no se cumplio
+	 * el mes y el dia de aniversario se le resta -1 a la resta anterior
+	 * @param usuario para obtener la fecha de nacimiento 
+	 * @return retorna la edad del usuario ingresado
+	 */
+	public int obtenerEdad(Usuario usuario) {
+		LocalDate fechaActual = LocalDate.now();
+	    LocalDate fechaNacimiento = usuario.getFecha_nacimiento();
+	    int edad = fechaActual.getYear() - fechaNacimiento.getYear(); 
+		if (fechaNacimiento.getMonthValue() > fechaActual.getMonthValue()
+		        || (fechaNacimiento.getMonthValue() == fechaActual.getMonthValue()
+		        && fechaNacimiento.getDayOfMonth() > fechaActual.getDayOfMonth())) {
+		    edad--; // Restar 1 al resultado si el cumpleaños no ha ocurrido aún
+		}
+		return edad;
+	}
+	
 }

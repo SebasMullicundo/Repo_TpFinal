@@ -13,14 +13,20 @@
   	<!-- Navegación -->
   	<nav th:replace="~{layouts/nav :: nav}"></nav>
   	<!-- formulario para ingresar la edad del usuario para calcular el peso ideal -->
-  	<form class="my-form" th:action="@{/imc/edadIngreso}" method="get">
-       <input type="hidden" th:value="${usuario.codigo}" name="id">
-       <label>Edad usuario</label>
-	   <input type="number" name="edad">
-	   <input type="submit">
+  	<div class="container peso_container2 peso_container d-flex align-items-center justify-content-center">
+  	<div class="row">
+  	<div class="col-md-12"> 
+  	<div class="pesoDiseño">
+       <label>Edad usuario: </label>
+       <div th:text="${edad}"></div>
+       <label> altura del usuario (cm) </label>
+       <div th:text="${usuario.getEstatura()}"></div>
 	   <div>Su peso ideal es: </div>
   	   <div th:text="${aviso} + 'KG' "></div>
-  	</form>
+  	</div>
+  	</div>
+  	</div>
+  	</div>
  	<!-- footer -->
 	<footer th:replace="~{layouts/footer :: footer}"></footer>
   <!-- Inclusión del archivo JavaScript de Bootstrap -->
