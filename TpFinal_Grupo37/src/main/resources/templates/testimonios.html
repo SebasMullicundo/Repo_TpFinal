@@ -1,47 +1,62 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NutriLife</title>
-    <!-- Inclusión del archivo CSS de Bootstrap -->
-  	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-	<link rel="stylesheet" th:href="@{/estilos/estilos.css}">
-  </head>
-  <body>
-  	<!-- Navegación -->
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NutriLife-Testimonios</title>
+<!-- Inclusión del archivo CSS de Bootstrap -->
+<link th:rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/estilos/estilos.css}">
+<link rel="shortcut icon" href="/img/icono.png">
+</head>
+<body>
+	<!-- Navegación -->
 	<nav th:replace="~{layouts/nav :: nav}"></nav>
-    
- 	<div class="container">
-    <h1 class="text-center my-5">Testimonios</h1>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="testimonial p-4 text-center">
-                <img class="testimonial-image" th:src="@{/img/juan.png}" alt="Juan Pérez" style="width: 100px;">
-                <p class="testimonial-text">"Desde que empecé a comer más saludable, me siento con más energía y he perdido peso."</p>
-                <p class="testimonial-author">- Juan Pérez</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="testimonial p-4 text-center">
-                <img class="testimonial-image" th:src="@{/img/maria.png}" alt="María García" style="width: 100px;">
-                <p class="testimonial-text">"Comer saludable ha mejorado mi salud en general y me ha ayudado a controlar mi diabetes."</p>
-                <p class="testimonial-author">- María García</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="testimonial p-4 text-center">
-                <img class="testimonial-image" th:src="@{/img/carlos.png}" alt="Carlos Rodríguez" style="width: 180px;">
-                <p class="testimonial-text">"Nunca pensé que la comida saludable pudiera ser tan deliciosa. ¡Estoy disfrutando de cada bocado!"</p>
-                <p class="testimonial-author">- Carlos Rodríguez</p>
-            </div>
-        </div>
-    </div>
-</div>
- 	
- 	<!-- footer -->
+
+	<!-- Contenedor de testimonios -->
+
+	<div class="container peso_container¿">
+		<h1 class="text-center my-5">Testimonios</h1>
+		<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+			<!-- Iteración sobre la lista de testimonio -->
+			<div class="col d-flex justify-content-center" th:each="testimonio: ${testimonios}">
+			    <div class="card p-3 text-center px-4" style="width: 18rem;">
+			        <div class="user-image">
+			            <img class="rounded-circle"
+			                th:src="@{'/img/'+${testimonio.testImg}+'.png'}"
+			                style="width: 100px;">
+			        </div>
+			        <div class="user-content">
+			            <p class="card-text" th:text="${testimonio.comentario}">
+			            <p class="testimonial-author"
+			                th:text="${testimonio.usuario.nombre}+' '+${testimonio.usuario.apellido}"></p>
+			            <p class="testimonial-text" th:text="${testimonio.fecha}"></p>
+			            <!-- Botones para editar y eliminar un consejo -->
+			            <div th:if="${acciones}">
+			                <a class="btn btn-outline-danger" th:href="@{/testimonios/eliminar/} + ${testimonio.id}">Borrar</a>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+
+		</div>
+
+
+		<div class="gap-2 text-center">
+			<!-- Boton para crear un nuevo testimonio -->
+			<a th:if="${guardar}" class="servicio__enlace btn boton-imc m-5" th:href="@{/testimonios/acceso}">Nuevo testimonio</a>
+			<a th:if="${salir}" class="servicio__enlace btn boton-imc m-5" th:href="@{/index}">Salir</a>
+		</div>
+		
+		
+	</div>
+
+
+	<!-- footer -->
 	<footer th:replace="~{layouts/footer :: footer}"></footer>
-  <!-- Inclusión del archivo JavaScript de Bootstrap -->
-  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-  </body>
+	<!-- Inclusión del archivo JavaScript de Bootstrap -->
+	<script type="text/javascript"
+		th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
 </html>
