@@ -320,3 +320,43 @@ body {
   .cajas div:nth-child(odd) {
     color: #0000a0;
 }
+
+.peso_container2 {
+  
+  background-color: #ff8040;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+
+.pesoDiseño {
+  background-color: #333;
+  color: #fff;
+  
+  text-align: center;
+  font-size: 40px;
+}
+
+.pesoDiseño label {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.pesoDiseño div {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.peso_container2 div:nth-child(odd) {
+  border-radius: 15px;
+  background-color: #D2B7A7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  color:#8080ff;
+}
+
+.peso_container2 div:nth-child(even) {
+  background-color: #c0c0c0;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+   color:black;
+}

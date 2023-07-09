@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,8 @@ public class ImcController {
 	       return "imc";
 		  }
 		  model.addAttribute("usuario", user);
-		  model.addAttribute("aviso", 0.0F);
+		  model.addAttribute("aviso", usuarioService.pesoIdeal(user, usuarioService.obtenerEdad(user)));
+		  model.addAttribute("edad", usuarioService.obtenerEdad(user));
 		  return "pesoIdeal";
 	  	}
 	  	model.addAttribute("opcion", opcion);
@@ -87,17 +89,5 @@ public class ImcController {
 		model.addAttribute("aviso", imcService.calcularIMC(usuarioService.obtenerUsuario(id),peso));
 		return "imc";
 	}
-	/**
-	 * este controlador recibe como parametro desde la pagina de la
-	 * solicitud al "id" del objeto utilizado para volver a utilizarlo
-	 * y no perderlo y la edad para realizar una funcion util de la pagina. 
-	 */
-	@GetMapping("/edadIngreso")
-	public String getPesoIdealPage(@RequestParam("edad")int edad,@RequestParam(value="id")String id,Model model){
-		model.addAttribute("aviso", usuarioService.pesoIdeal(usuarioService.obtenerUsuario(id), edad));
-		model.addAttribute("usuario", usuarioService.obtenerUsuario(id));
-		return "pesoIdeal";
-	}
-	
 }
 
