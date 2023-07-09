@@ -1,29 +1,55 @@
 package ar.edu.unju.fi.entity;
 
-import jakarta.validation.constraints.*;
+import java.time.LocalDate;
+
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Component
+@Entity
+@Table(name="testimonios")
 public class Testimonio {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "testimonio_id")
     private Long id;
+    
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    @NotNull(message="Debe seleccionar la fecha")
-    @Past(message="La fecha debe ser menor a la fecha actual")
-    private String fecha;
-    @NotBlank(message= "Debe seleccionar un usuario")
-
+    @Column(name = "testimonio_fecha")
+    private LocalDate fecha;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usr_id")
     private Usuario usuario;
-    @NotBlank(message= "Debe ingresar un comentario")
-    @Pattern(regexp = "^[A-Z].*", message = "El comentario debe comenzar con una letra mayúscula")
-    @Size(min=50, message="El comentario no puede tener menos de 50 caracteres")
+    
+    /*@NotEmpty(message= "Debe ingresar un comentario")
+    @Pattern(regexp = "^[A-Z].*", message = "El comentario debe comenzar con una letra mayúscula")*/
+    @Column(name = "testimonio_comentario")
     private String comentario;
+   
+    @Column(name = "testimonio_img")
+	private String testImg;
+    
+    @Column(name = "testimonio_estado")
     private boolean estado;
 
-    public Testimonio(Long id, @NotNull(message = "Debe seleccionar la fecha") String fecha, Usuario usuario, String comentario, boolean estado) {
-        this.id = id;
+    public Testimonio() {
+    }
+    
+    public Testimonio(LocalDate fecha, Usuario usuario, String comentario) {
         this.fecha = fecha;
         this.usuario = usuario;
         this.comentario = comentario;
-        this.estado = estado;
     }
 
     public Long getId() {
@@ -34,11 +60,11 @@ public class Testimonio {
         this.id = id;
     }
 
-    public String getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
@@ -58,6 +84,14 @@ public class Testimonio {
         this.comentario = comentario;
     }
 
+    public String getTestImg() {
+		return testImg;
+	}
+
+	public void setNombreImg(String testImg) {
+		this.testImg = testImg;
+	}
+	
     public boolean isEstado() {
         return estado;
     }
@@ -65,4 +99,8 @@ public class Testimonio {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+	public void setTestImg(String testImg) {
+		this.testImg = testImg;
+	}
 }

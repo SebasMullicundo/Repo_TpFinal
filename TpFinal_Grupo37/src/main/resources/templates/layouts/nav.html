@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- Inclusión del archivo CSS de Bootstrap -->
 		<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link rel="shortcut icon" href="/img/icono.png">
 	</head>
 	<body>
 		<!-- Barra de navegación -->
@@ -23,7 +24,7 @@
 		          <a class="nav-link" th:href="@{/usuarios/registro}">Registrarme</a>
 		        </li>
 		        <li class="nav-item">
-		          <a class="nav-link" href="#">Testimonios</a>
+		          <a class="nav-link" th:href="@{/testimonios/listado}">Testimonios</a>
 		        </li>
 		        <li class="nav-item dropdown">
 		          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,6 +43,7 @@
 							<li><a class="dropdown-item" th:href="@{/ingredientes/acceso}">Ingredientes</a></li>
 							<li><a class="dropdown-item" th:href="@{/recetas/acceso}">Recetas</a></li>
 							<li><a class="dropdown-item" th:href="@{/usuarios/acceso_administrador}">Usuarios</a></li>
+							<li><a class="dropdown-item" th:href="@{/testimonios/acceso_administrador}">Testimonios</a></li>
 						</ul>
 					</div>
 		        </li>
