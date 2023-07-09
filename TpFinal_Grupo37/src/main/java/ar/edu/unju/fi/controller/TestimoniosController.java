@@ -189,27 +189,42 @@ public class TestimoniosController {
 	 */
 	@PostMapping("/administrador_control")
 	public String administradorControl(Model model, @RequestParam("codigo") String codigo) {
-		// Verifica si existe el usuario mediante el codigo ingresado
-		if (usuarioService.verificarUsuario(codigo)) {
-			usuario = usuarioService.obtenerUsuario(codigo);
-			// Verifica el rol del usuario
-			if (usuario.getRol()) {
-				model.addAttribute("testimonios", testimonioService.getListaTestimonios());
-				model.addAttribute("acciones", true);
-				model.addAttribute("salir", true);
-
-				return "testimonios";
-			} else {
-				model.addAttribute("testimonios", true);
-				model.addAttribute("mensaje2", true);
-
-				return "control";
-			}
-		} else {
-			model.addAttribute("testimonios", true);
-			model.addAttribute("mensaje1", true);
-
-			return "control";
-		}
+		/*
+		 * verifica si el usuario existe
+		 * si no existe regresa a la vista del control activando el formulario y mensaje correspondiente
+		 */
+	    if (!usuarioService.verificarUsuario(codigo)) {
+	        model.addAttribute("testimonios", true);
+	        model.addAttribute("mensaje1", true);
+	        return "control";
+	    }
+	    
+	    usuario = usuarioService.obtenerUsuario(codigo);
+	    
+	    /*
+		 * verifica si el estado usuario en caso de estar eliminado logicamente
+		 * si no esta activo regresa a la vista del control activando el formulario y mensaje correspondiente
+		 */
+	    if (!usuario.isEstado()) {
+	        model.addAttribute("testimonios", true);
+	        model.addAttribute("mensaje1", true);
+	        return "control";
+	    }
+	    
+	    /*
+		 * verifica el rol del usuario
+		 * si es administrador redirecciona a la direccion correspondiente a la lista de testimonios
+		 */
+	    if (usuario.getRol()) {
+	    	model.addAttribute("testimonios", testimonioService.getListaTestimonios());
+	    	model.addAttribute("acciones", true);
+			model.addAttribute("salir", true);
+	        return "testimonios";
+	    }
+	    
+	    //si el usuario no tiene el rol administador regresa a la vista del control activando el formulario y mensaje correspondiente
+	    model.addAttribute("testimonios", true);
+	    model.addAttribute("mensaje2", true);
+	    return "control";
 	}
 }

@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NutriLife-Recetas</title>
-<!-- Inclusión del archivo CSS de Bootstrap -->
+
 <!-- Inclusión del archivo CSS de Bootstrap -->
 <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 <link rel="stylesheet" th:href="@{/estilos/estilos.css}">
@@ -22,12 +22,16 @@
 			
 			<h3 class="text-center fw-semibold container__subtitulo" th:text="${edicion}? 'Modificar receta' : 'Nueva receta'"></h3>
 			
+			<!-- Titulo del formulario que cambiara de acuerdo a la variable edicion -->
 			<form class="row g-3" th:action="${edicion}? @{/recetas/modificar_receta} : @{/recetas/guardar_receta}" th:object="${receta}" method="post">
+				<!-- Campo del nombre -->
 				<div class="col-12">
 					<label for="nombre" class="form-label container__parrafo">Nombre de la receta</label> 
 					<input type="text" class="form-control" id="nombre" name="receta_nombre" placeholder="Ingrese el nombre de la receta" th:field="*{nombre}">
 					<div class="p-1 mt-1 mb-2 bg-danger text-white rounded-1" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 				</div>
+				
+				<!-- Campo de categoria -->
 				<div class="col-md-6">
 					<label for="categoriaReceta" class="form-label container__parrafo">Categoría</label> 
 					<select id="categoriaReceta" name="categoriaReceta" class="form-select" th:field="*{categoria}">
@@ -43,18 +47,12 @@
 					</select>
 					<div class="p-1 mt-1 mb-2 bg-danger text-white rounded-1" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
 				</div>
-				<!-- <div class="col-md-6">
-				    <label for="ingredientes" class="form-label container__parrafo">Ingredientes</label> 
-				    <select id="ingredientes" class="form-select" name="ingredientes" th:field="*{ingredientes}">
-				        <option value="" selected>Seleccione un ingrediente...</option>
-				        <option th:each="ingrediente: ${ingredientes}" th:value="${ingrediente.id}" th:text="${ingrediente.nombre}"></option>
-				    </select>
-				    <div class="text-white" th:if="${#fields.hasErrors('ingredientes')}" th:errors="*{ingredientes}"></div>
-				</div>-->
 				
+				<!-- Campo de ingredientes -->
 				<div class="col-md-6">
 				    <label class="form-label container__parrafo">Ingredientes</label>
 				    <div>
+				    	<!-- Iteracion sobre la lista de ingredientes -->
 				        <label th:each="ingrediente : ${ingredientes}">
 				            <input class="m-2" type="checkbox" name="ingredientes" th:value="${ingrediente.id}" th:checked="${receta.ingredientes != null ? receta.ingredientes.contains(ingrediente) : false}">
 				            <span th:text="${ingrediente.nombre}"></span>
@@ -62,24 +60,13 @@
 				    </div>
 				    <div class="p-1 mt-1 mb-2 bg-danger text-white rounded-1" th:if="${#fields.hasErrors('ingredientes')}" th:errors="*{ingredientes}"></div>
 				</div>
-
-
 				
-
-				
+				<!-- Campo de preparacion -->
 				<div class="col-12">
 				    <label for="preparacion" class="form-label container__parrafo">Preparación</label> 
 				    <textarea class="form-control" id="preparacion" rows="5" placeholder="Ingrese la preparación" th:field="*{preparacion}"></textarea>
 				    <div class="p-1 mt-1 mb-2 bg-danger text-white rounded-1" th:if="${#fields.hasErrors('preparacion')}" th:errors="*{preparacion}"></div>
 				</div>
-
-				<!-- <div class="col-12">
-					<label for="recetaImagen" class="form-label container__parrafo">Subir imagen de la receta</label>
-					<div class="input-group mb-3"> 
-	  					<input type="file" class="form-control" id="recetaImagen" aria-describedby="recetaImagen" aria-label="Upload">
-	  					<button class="btn btn-outline-secondary" type="button" id="recetaImagen">Subir imagen</button>
-					</div>
-				</div> -->
 				
 				<input type="hidden" name="id" th:value="*{id}">
 				

@@ -20,91 +20,125 @@ public class UsuarioServiceImp implements IUsuarioService{
 	@Autowired
 	private Usuario usuario;
 
+	/**
+	 * Guarda un nuevo usuario.
+	 *
+	 * @param objeto de usuario a guardar.
+	 */
 	@Override
 	public void guardarUsuario(Usuario usuario) {
-		usuario.setEstado(true);
-		
-		usuarioRepository.save(usuario);
-		usuario.setCodigo("usr"+usuario.getId().toString());
-		usuarioRepository.save(usuario);
-		
+	    usuario.setEstado(true);
+	    //se guarda para generar el id
+	    usuarioRepository.save(usuario);
+	    //contanenacion del String con el id de usuario
+	    usuario.setCodigo("usr" + usuario.getId().toString());
+	    //actualizacion con el codigo de usuario generado
+	    usuarioRepository.save(usuario);
 	}
 
+	/**
+	 * Obtiene la lista de todos los usuarios activos.
+	 *
+	 * @return lista de usuarios.
+	 */
 	@Override
 	public List<Usuario> getListaUsuarios() {
-		
-		return usuarioRepository.findByEstado(true);
+	    return usuarioRepository.findByEstado(true);
 	}
 
+	/**
+	 * Busca un usuario en el sistema basado en su ID.
+	 *
+	 * @param id El ID del usuario a buscar.
+	 * @return El objeto de usuario correspondiente al ID especificado.
+	 */
 	@Override
 	public Usuario findUsuarioById(Long id) {
-	
-		usuario = usuarioRepository.findById(id).get();
-		return usuario;
+	    usuario = usuarioRepository.findById(id).get();
+	    return usuario;
 	}
 
+	/**
+	 * Elimina logicamente un usuario.
+	 *
+	 * @param objeto de usuario a eliminar.
+	 */
 	@Override
 	public void eliminarUsuario(Usuario usuario) {
-		
-		usuario.setEstado(false);
-		usuarioRepository.save(usuario);
+	    usuario.setEstado(false);
+	    usuarioRepository.save(usuario);
 	}
 
+	/**
+	 * Modifica un usuario existente.
+	 *
+	 * @param objeto usuario modificado.
+	 */
 	@Override
 	public void modificarUsuario(Usuario usuario) {
-		usuario.setEstado(true);
-		
-		usuarioRepository.save(usuario);
-		usuario.setCodigo("usr"+usuario.getId().toString());
-		usuarioRepository.save(usuario);
+	    usuario.setEstado(true);
+	    usuarioRepository.save(usuario);
+	    usuario.setCodigo("usr" + usuario.getId().toString());
+	    usuarioRepository.save(usuario);
 	}
 
+	/**
+	 * Crea un nuevo objeto de usuario.
+	 *
+	 * @return nuevo objeto usuario.
+	 */
 	@Override
 	public Usuario nuevoUsuario() {
-		
-		Usuario usuario = new Usuario();
-		usuario.setRol(false);
-		return usuario;
+	    Usuario usuario = new Usuario();
+	    usuario.setRol(false);
+	    return usuario;
 	}
 
+	/**
+	 * Verifica si un usuario existe basado en su código de usuario.
+	 *
+	 * @param código de usuario a verificar.
+	 * @return true si el usuario existe, false en caso contrario.
+	 */
 	@Override
 	public boolean verificarUsuario(String codigo_usuario) {
-		
-		usuario = usuarioRepository.findByCodigo(codigo_usuario);
-		
-		if(usuario==null) {
-			return false;
-		} else {
-			return true;
-		}
+	    usuario = usuarioRepository.findByCodigo(codigo_usuario);
+	    return usuario != null;
 	}
 
+	/**
+	 * Obtiene un usuario basado en su código de usuario.
+	 *
+	 * @param código de usuario del usuario a obtener.
+	 * @return usuario correspondiente al código especificado.
+	 */
 	@Override
 	public Usuario obtenerUsuario(String codigo) {
-		
-		return usuarioRepository.findByCodigo(codigo);
+	    return usuarioRepository.findByCodigo(codigo);
 	}
 
-	@Override
+
+	/*@Override
 	public float calcularPesoIdeal(LocalDate fecha_nacimineto) {
 		
-		System.out.println("fecha de nacimiento: "+fecha_nacimineto);
-		
 		LocalDate fechaActual = LocalDate.now();
-		
-		System.out.println("fecha actual: "+fechaActual);
 		
 		Period periodo = Period.between(fecha_nacimineto, fechaActual);
 		
 		int edad = periodo.getYears();
 		
-		System.out.println("edad: "+edad);
-		
 		float pesoIdeal = (float) (usuario.getEstatura() - 100 + (((float) edad / 10) * 0.9));
 		
 		return pesoIdeal;
-	}
+	}*/
 	
+	/**
+	 * Calcula el peso ideal de un usuario basado en su estatura y edad.
+	 *
+	 * @param objeto usuario para el cual se calculará el peso ideal.
+	 * @param edad del usuario.
+	 * @return peso ideal del usuario.
+	 */
 	public float pesoIdeal(Usuario usuario, int edad) {
 		return (usuario.getEstatura() - 100 + (( (float) edad / 10) * 0.9F));
 	}

@@ -31,33 +31,65 @@ public class IngredienteController {
 	@Autowired
 	private Usuario usuario;
 	
+	/**
+	 * Método que redirecciona a la vista y controlar el usuario.
+	 * Establece el atributo "ingredientes" en el modelo con el valor "true" y activar el formulario 
+	 * correspondiente a los ingredientes.
+	 *
+	 * @return La vista "control".
+	 */
 	@GetMapping("/acceso")
 	public String contraseñaAcesso(Model model) {
 		model.addAttribute("ingredientes", true);
 		return "control";
 	}
 	
+	/**
+	 * Realiza el control del codigo de usuario.
+	 * Verifica el código enviado, el estado del usuario y su rol.
+	 *
+	 * @param codigo El código de usuario enviado como parámetro.
+	 * @return La vista correspondiente según el resultado de las verificaciones.
+	 */
 	@PostMapping("/control")
 	public String contraseñaControl(Model model, @RequestParam("codigo") String codigo) {
 		
-		System.out.println("el codigo enviado es: "+codigo);
-		if(usuarioService.verificarUsuario(codigo)) {
-			usuario = usuarioService.obtenerUsuario(codigo);
-			System.out.println("usuario obtenido: "+ usuario.getNombre());
-			if(usuario.getRol()) {
-				model.addAttribute("ingredientes", ingredienteService.getListaIngredientes());
-				return "redirect:/ingredientes/listado";
-			}
-			else {
-				model.addAttribute("ingredientes", true);
-				model.addAttribute("mensaje2", true);
-				return "control";
-			}
-		} else {
-			model.addAttribute("ingredientes", true);
-			model.addAttribute("mensaje1", true);
-			return "control";
-		}
+		/*
+		 * verifica si el usuario existe
+		 * si no existe regresa a la vista del control activando el formulario y mensaje correspondiente
+		 */
+		if (!usuarioService.verificarUsuario(codigo)) {
+	        model.addAttribute("ingredientes", true);
+	        model.addAttribute("mensaje1", true);
+	        return "control";
+	    }
+	    
+	    usuario = usuarioService.obtenerUsuario(codigo);
+	    
+	    /*
+		 * verifica si el estado usuario en caso de estar eliminado logicamente
+		 * si no esta activo regresa a la vista del control activando el formulario y mensaje correspondiente
+		 */
+	    if (!usuario.isEstado()) {
+	        model.addAttribute("ingredientes", true);
+	        model.addAttribute("mensaje1", true);
+	        return "control";
+	    }
+	    
+	    /*
+		 * verifica el rol del usuario
+		 * si es administrador redirecciona a la direccion correspondiente a la lista de ingredientes
+		 */
+	    if (usuario.getRol()) {
+	        return "redirect:/ingredientes/listado";
+	    }
+	    
+	    
+		//si el usuario no tiene el rol administador regresa a la vista del control activando el formulario y mensaje correspondiente
+	    model.addAttribute("ingredientes", true);
+	    model.addAttribute("mensaje2", true);
+	    return "control";
+		
 	}
 	
 	/**
