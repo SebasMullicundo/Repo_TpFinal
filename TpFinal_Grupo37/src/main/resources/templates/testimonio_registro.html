@@ -17,17 +17,21 @@
 	<!-- Contenido del formulario -->
 	<div class="container mt-2 peso_container">
 		<div class="p-3 mb-2 bg-body-secondary">
-			<form class="form-container" th:action="@{/testimonios/guardar_testimonio}" th:object="${testimonio}" method="post">
+			<form class="form-container"
+				th:action="@{/testimonios/guardar_testimonio}"
+				th:object="${testimonio}" method="post">
 				<h2 class="peso_titulo">Nuevo testimonio</h2>
 				<h4 th:text="'Usuario ' + ${usuario.nombre}"></h4>
 				<div class="form-floating">
-					<textarea style="width: 350px; height: 200px;" rows="200" cols="10" class="form-control" placeholder="Dejar el comentario aqui" id="comentario" name="comentario" required th:field="*{comentario}"></textarea>
-					<label for="comentario">Ingrese su comentario
-						aqui</label>
-					<!-- <div class="p-1 mt-1 mb-2 bg-danger text-white rounded-1" th:if="${#fields.hasErrors('comentario')}" th:errors="*{comentario}"></div> -->
+					<textarea style="width: 350px; height: 200px;" rows="200" cols="10"
+						class="form-control" placeholder="Dejar el comentario aqui"
+						id="comentario" name="comentario" required
+						th:field="*{comentario}"></textarea>
+					<label for="comentario">Ingrese su comentario aqui</label>
 				</div>
 				<!-- Campo oculto para almacenar el ID del testimonio -->
 				<input type="hidden" name="id" th:value="*{id}">
+				<!-- Campo oculto para almacenar el codigo de usuario -->
 				<input type="hidden" name="codigo" th:value="${usuario.codigo}">
 				<div class="d-grid gap-2">
 					<input class="btn boton-imc m-5" type="submit" value="Guardar">
@@ -38,6 +42,7 @@
 
 	<!-- footer -->
 	<footer th:replace="~{layouts/footer :: footer}"></footer>
+
 	<!-- Inclusión del archivo JavaScript de Bootstrap -->
 	<script type="text/javascript"
 		th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
