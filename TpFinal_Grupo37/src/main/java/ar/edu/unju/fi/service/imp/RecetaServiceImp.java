@@ -65,7 +65,7 @@ public class RecetaServiceImp implements IRecetaService{
 	@Override
 	public Receta findRecetaById(Long id) {
 		Receta receta=recetaRepository.findById(id).get();
-		receta.setListaPreparaciones(generarLista(receta.getPreparacion()));
+		//receta.setListaPreparaciones(generarLista(receta.getPreparacion()));
 		return receta;
 	}
 

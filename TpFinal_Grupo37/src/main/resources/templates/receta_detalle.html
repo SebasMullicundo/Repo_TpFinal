@@ -26,12 +26,7 @@
 	      	<li th:text="${ingrediente.nombre}"></li>
 	      </ul>
 			<h2 class="receta_subtitulo">Preparación</h2>
-			<td class="tabla__dato" style="text-align: left;">
-				<!-- Iteración sobre la lista de ingredientes de la receta -->
-				<ul>
-					<li th:each="preparacion: ${receta.listaPreparaciones}" th:text="${preparacion}"></li>
-				</ul>
-			</td>
+			<p th:text="${receta.preparacion}"></p>
 			<a th:href="@{/recetas/filtro/}+${receta.categoria}" class="btn boton-imc" role="button">Regresar</a>
 	    </div>
 	  </div>

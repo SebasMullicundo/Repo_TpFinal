@@ -40,10 +40,7 @@
 		                        </ul>
 		                    </td>
 		                    <td class="tabla__dato" style="text-align: left;">
-					          <!-- Iteración sobre la lista de ingredientes de la receta -->
-					          <ul>
-					            <li th:each="preparacion: ${receta.listaPreparaciones}" th:text="${preparacion}"></li>
-					          </ul>
+					          <p th:text="${receta.preparacion}"></p>
 					        </td>
 			                <td class="tabla__dato">
 		                        <!-- Enlaces para editar y eliminar una receta -->

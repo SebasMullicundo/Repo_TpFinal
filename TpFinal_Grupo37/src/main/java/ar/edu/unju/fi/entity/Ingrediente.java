@@ -1,6 +1,6 @@
 package ar.edu.unju.fi.entity;
 
-import java.util.List;
+
 
 import org.springframework.stereotype.Component;
 
@@ -9,7 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
@@ -32,8 +32,7 @@ public class Ingrediente {
 	@Column(name = "ingr_nombre")
 	private String nombre;
 	
-	@ManyToMany(mappedBy = "ingredientes")
-	private List<Receta> recetas;
+
 	
 	@Column(name = "estado")
 	private boolean estado;
@@ -72,13 +71,6 @@ public class Ingrediente {
 		this.estado = estado;
 	}
 
-	public List<Receta> getRecetas() {
-		return recetas;
-	}
 
-	public void setRecetas(List<Receta> recetas) {
-		this.recetas = recetas;
-	}
-	
 	
 }

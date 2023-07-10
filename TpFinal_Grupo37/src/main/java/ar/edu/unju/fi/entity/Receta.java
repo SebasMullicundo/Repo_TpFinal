@@ -59,7 +59,7 @@ public class Receta {
 	
 	@NotEmpty(message="El campo no puede estar vacía")
 	@Pattern(regexp = "^[A-Z].*", message = "Debe comenzar con una letra mayúscula")
-	@Size(max=600, message="La clave no puede tener mas de 600 caracteres")
+	@Size(max=600, message="La clave no puede tener mas de 1500 caracteres")
 	@Column(columnDefinition = "TEXT", name = "rest_preparacion")
 	private String preparacion;
 	
