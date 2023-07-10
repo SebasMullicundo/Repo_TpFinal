@@ -52,7 +52,7 @@ public class Receta {
 	
 	@NotNull(message="Debe seleccionar un ingrediente")
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "recetas-ingredientes",
+	@JoinTable(name = "recetas_ingredientes",
 	joinColumns = @JoinColumn(name = "rect_id"),
 	inverseJoinColumns = @JoinColumn(name = "ingr_id"))
 	private List<Ingrediente> ingredientes;
